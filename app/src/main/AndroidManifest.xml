@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nookipedia">
         <activity
-            android:name=".Splash"
+            android:name=".main.Splash"
             android:theme="@style/Splash"
             android:exported="true">
             <intent-filter>
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
         </activity>
     </application>

@@ -7,7 +7,9 @@
     android:background="#CDE9CD"
     android:backgroundTint="#CDE9CD"
     app:layoutDescription="@xml/activity_splash_scene"
-    tools:context=".Splash">
+    tools:context=".main.Splash"
+    android:id="@+id/motion"
+    >
 
     <ImageView
         android:id="@+id/imageView3"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/loginfragment">
+
+    <fragment
+        android:id="@+id/loginfragment"
+        android:name="com.example.nookipedia.main.loginfragment"
+        android:label="fragment_registerfragment"
+        tools:layout="@layout/fragment_registerfragment" >
+        <action
+            android:id="@+id/action_loginfragment_to_registerfragment"
+            app:destination="@id/registerfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerfragment"
+        android:name="com.example.nookipedia.main.registerfragment"
+        android:label="registerfragment" >
+        <action
+            android:id="@+id/action_registerfragment_to_loginfragment"
+            app:destination="@id/loginfragment" />
+    </fragment>
+</navigation>
