@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_registerfragment_to_fishfragment"
             app:destination="@id/fishfragment" />
+        <action
+            android:id="@+id/action_registerfragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/fishfragment"

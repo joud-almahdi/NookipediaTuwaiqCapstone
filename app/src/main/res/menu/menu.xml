@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fishmenu"
+        android:icon="@drawable/fishicon"
+        android:title="@string/fish" />
+    <item
+        android:id="@+id/bugmenu"
+        android:icon="@drawable/bugicon"
+        android:title="@string/bug" />
+    <item
+        android:id="@+id/seamenu"
+        android:icon="@drawable/seaicon"
+        android:title="@string/sea" />
+</menu>

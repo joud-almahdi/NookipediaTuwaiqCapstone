@@ -19,12 +19,22 @@ private lateinit var binding:FragmentProfileBinding
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentProfileBinding.inflate(layoutInflater, container, false)
+
+        if(arguments!=null)
+        {
+            binding.useridinprofile.text=requireArguments().getString("id")
+            binding.useremailinprofile.text=requireArguments().getString("email")
+        }
+
+
         return binding.root
+
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.logoutbutton.setOnClickListener {
             findNavController().navigate(R.id.action_profile_to_loginfragment)
         }
