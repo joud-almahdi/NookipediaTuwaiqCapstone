@@ -31,6 +31,10 @@ class registerfragment : Fragment() {
         binding.registertologinbutton.setOnClickListener {
             findNavController().navigate(R.id.action_registerfragment_to_loginfragment)
         }
+
+        binding.registerbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_registerfragment_to_fishfragment)
+        }
     }
 
 }

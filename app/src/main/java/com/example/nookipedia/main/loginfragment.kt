@@ -28,6 +28,11 @@ private lateinit var binding:FragmentLoginfragmentBinding
         binding.logintoregisterbutton.setOnClickListener {
         findNavController().navigate(R.id.action_loginfragment_to_registerfragment)
         }
+
+
+        binding.loginbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginfragment_to_fishfragment)
+        }
     }
 
 

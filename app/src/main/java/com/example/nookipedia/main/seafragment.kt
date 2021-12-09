@@ -6,28 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.nookipedia.R
-import com.example.nookipedia.databinding.FragmentFishfragmentBinding
 
 
-class fishfragment : Fragment() {
+class seafragment : Fragment() {
 
 
-
-    private lateinit var binding: FragmentFishfragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentFishfragmentBinding.inflate(layoutInflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_seafragment, container, false)
     }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
 
 }

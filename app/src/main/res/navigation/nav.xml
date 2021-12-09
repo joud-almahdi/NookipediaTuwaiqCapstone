@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginfragment_to_registerfragment"
             app:destination="@id/registerfragment" />
+        <action
+            android:id="@+id/action_loginfragment_to_fishfragment"
+            app:destination="@id/fishfragment" />
     </fragment>
     <fragment
         android:id="@+id/registerfragment"
@@ -20,6 +23,36 @@
         android:label="registerfragment" >
         <action
             android:id="@+id/action_registerfragment_to_loginfragment"
+            app:destination="@id/loginfragment" />
+        <action
+            android:id="@+id/action_registerfragment_to_fishfragment"
+            app:destination="@id/fishfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fishfragment"
+        android:name="com.example.nookipedia.main.fishfragment"
+        android:label="fragment_fishfragment"
+        tools:layout="@layout/fragment_fishfragment" >
+        <action
+            android:id="@+id/action_fishfragment_to_detailfragment"
+            app:destination="@id/detailfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailfragment"
+        android:name="com.example.nookipedia.detailfragment"
+        android:label="fragment_detailfragment"
+        tools:layout="@layout/fragment_detailfragment" >
+        <action
+            android:id="@+id/action_detailfragment_to_fishfragment"
+            app:destination="@id/fishfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.nookipedia.main.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_loginfragment"
             app:destination="@id/loginfragment" />
     </fragment>
 </navigation>
