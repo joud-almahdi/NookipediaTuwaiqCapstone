@@ -3,42 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/loginfragment">
+    app:startDestination="@id/fishfragment">
 
-    <fragment
-        android:id="@+id/loginfragment"
-        android:name="com.example.nookipedia.main.loginfragment"
-        android:label="fragment_registerfragment"
-        tools:layout="@layout/fragment_registerfragment" >
-        <action
-            android:id="@+id/action_loginfragment_to_registerfragment"
-            app:destination="@id/registerfragment" />
-        <action
-            android:id="@+id/action_loginfragment_to_fishfragment"
-            app:destination="@id/fishfragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerfragment"
-        android:name="com.example.nookipedia.main.registerfragment"
-        android:label="registerfragment" >
-        <action
-            android:id="@+id/action_registerfragment_to_loginfragment"
-            app:destination="@id/loginfragment" />
-        <action
-            android:id="@+id/action_registerfragment_to_fishfragment"
-            app:destination="@id/fishfragment" />
-        <action
-            android:id="@+id/action_registerfragment_to_profile"
-            app:destination="@id/profile" />
-    </fragment>
     <fragment
         android:id="@+id/fishfragment"
         android:name="com.example.nookipedia.main.fishfragment"
-        android:label="fragment_fishfragment"
-        tools:layout="@layout/fragment_fishfragment" >
+        android:label="@string/fish"
+        tools:layout="@layout/fragment_fishfragment">
         <action
             android:id="@+id/action_fishfragment_to_detailfragment"
             app:destination="@id/detailfragment" />
+        <action
+            android:id="@+id/action_fishfragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/detailfragment"
@@ -53,9 +30,15 @@
         android:id="@+id/profile"
         android:name="com.example.nookipedia.main.profile"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profile_to_loginfragment"
-            app:destination="@id/loginfragment" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/bugfragment"
+        android:name="com.example.nookipedia.main.bugfragment"
+        android:label="@string/bug"
+        tools:layout="@layout/fragment_bugfragment" />
+    <fragment
+        android:id="@+id/seafragment"
+        android:name="com.example.nookipedia.main.seafragment"
+        android:label="@string/sea"
+        tools:layout="@layout/fragment_seafragment" />
 </navigation>

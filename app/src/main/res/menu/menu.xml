@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/fishmenu"
+        android:id="@+id/fishfragment"
         android:icon="@drawable/fishicon"
         android:title="@string/fish" />
     <item
-        android:id="@+id/bugmenu"
+        android:id="@+id/bugfragment"
         android:icon="@drawable/bugicon"
         android:title="@string/bug" />
     <item
-        android:id="@+id/seamenu"
+        android:id="@+id/seafragment"
         android:icon="@drawable/seaicon"
         android:title="@string/sea" />
 </menu>

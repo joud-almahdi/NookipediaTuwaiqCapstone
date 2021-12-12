@@ -32,7 +32,7 @@ class Splash : AppCompatActivity() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                val intent= Intent(this@Splash,MainActivity::class.java)
+                val intent= Intent(this@Splash,loginactivity::class.java)
                 startActivity(intent)
                 finish()
 

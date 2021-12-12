@@ -36,7 +36,7 @@ private lateinit var binding:FragmentProfileBinding
         super.onViewCreated(view, savedInstanceState)
 
         binding.logoutbutton.setOnClickListener {
-            findNavController().navigate(R.id.action_profile_to_loginfragment)
+           // findNavController().navigate(R.id.action_profile_to_loginfragment)
         }
     }
 

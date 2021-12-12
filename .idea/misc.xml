@@ -7,7 +7,9 @@
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/drawable/profiledatashow.xml" value="0.19479166666666667" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/drawable/profileimage.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/font/animalcrossingfont.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/activity_loginactivity.xml" value="0.15704154002026344" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/activity_main.xml" value="0.16458333333333333" />
+        <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/activity_registeractivity.xml" value="0.15020263424518743" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/activity_splash.xml" value="0.16576086956521738" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/fragment_bugfragment.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/fragment_detailfragment.xml" value="0.22" />
@@ -19,6 +21,7 @@
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/fragment_seafragment.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/layout/item_layout.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/menu/menu.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/joud/AndroidStudioProjects/Nookipedia/app/src/main/res/menu/uppermenu.xml" value="0.17864583333333334" />
       </map>
     </option>
   </component>
