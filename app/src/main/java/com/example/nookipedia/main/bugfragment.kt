@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import com.example.nookipedia.R
@@ -29,6 +30,7 @@ class bugfragment : Fragment() {
     var bugarray=ArrayList<bugjsonItem>()
     private val bugviewmodel: animalcrossingviewmodel by activityViewModels()
     private lateinit var binding: FragmentBugfragmentBinding
+    private lateinit var adapter :bugadapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +43,26 @@ class bugfragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter= bugadapter(bugviewmodel)
+        adapter= bugadapter(bugviewmodel)
         binding.bugrecyclerview.adapter=adapter
+        observers()
+        bugviewmodel.getbug()
 
+    }
+
+
+
+    fun observers()
+    {
+        bugviewmodel.buglivedata.observe(viewLifecycleOwner,{
+
+            adapter.submitbug(it)
+        })
+
+
+        bugviewmodel.errorlivedata.observe(viewLifecycleOwner,{
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        })
     }
 
 

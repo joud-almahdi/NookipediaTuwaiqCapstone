@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import com.example.nookipedia.R
@@ -27,7 +28,7 @@ class seafragment : Fragment() {
 
     var seaarray=ArrayList<seajsonItem>()
     private lateinit var binding: FragmentSeafragmentBinding
-
+    private lateinit var adapter:seaadapter
     private val seaviewmodel:animalcrossingviewmodel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +41,22 @@ class seafragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter= seaadapter(seaviewmodel)
+         adapter= seaadapter(seaviewmodel)
         binding.searecyclerview.adapter=adapter
+            observer()
+        seaviewmodel.getsea()
+    }
 
+
+    fun observer()
+    {
+        seaviewmodel.sealivedata.observe(viewLifecycleOwner,{
+            adapter.submitsea(it)
+        })
+
+        seaviewmodel.errorlivedata.observe(viewLifecycleOwner,{
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+        })
     }
 
 

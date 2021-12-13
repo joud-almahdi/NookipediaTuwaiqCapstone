@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.nookipedia.R
@@ -14,7 +15,7 @@ import com.example.nookipedia.json.bugjson.bugjsonItem
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.squareup.picasso.Picasso
 
-class seaadapter(seaviewmodel:animalcrossingviewmodel) :
+class seaadapter(val seaviewmodel:animalcrossingviewmodel) :
     RecyclerView.Adapter<seaadapter.seaviewholder>() {
 
 
@@ -45,6 +46,12 @@ class seaadapter(seaviewmodel:animalcrossingviewmodel) :
         val item = differ.currentList[position]
        holder.seaname.text=item.name
         Picasso.get().load(item.imageUrl).into(holder.seaimage)
+
+        holder.itemView.setOnClickListener {
+            seaviewmodel.onesealivedata.postValue(item)
+            holder.itemView.findNavController().navigate(R.id.action_seafragment_to_seadetailFragment)
+
+        }
     }
 
     override fun getItemCount(): Int {

@@ -35,10 +35,27 @@
         android:id="@+id/bugfragment"
         android:name="com.example.nookipedia.main.bugfragment"
         android:label="@string/bug"
-        tools:layout="@layout/fragment_bugfragment" />
+        tools:layout="@layout/fragment_bugfragment" >
+        <action
+            android:id="@+id/action_bugfragment_to_bugdetailfragment"
+            app:destination="@id/bugdetailfragment" />
+    </fragment>
     <fragment
         android:id="@+id/seafragment"
         android:name="com.example.nookipedia.main.seafragment"
         android:label="@string/sea"
-        tools:layout="@layout/fragment_seafragment" />
+        tools:layout="@layout/fragment_seafragment" >
+        <action
+            android:id="@+id/action_seafragment_to_seadetailFragment"
+            app:destination="@id/seadetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bugdetailfragment"
+        android:name="com.example.nookipedia.main.bugdetailfragment"
+        android:label="bugdetailfragment" />
+    <fragment
+        android:id="@+id/seadetailFragment"
+        android:name="com.example.nookipedia.main.seadetailFragment"
+        android:label="fragment_seadetail"
+        tools:layout="@layout/fragment_seadetail" />
 </navigation>

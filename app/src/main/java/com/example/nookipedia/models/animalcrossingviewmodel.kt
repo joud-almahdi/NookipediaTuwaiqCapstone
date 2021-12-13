@@ -19,6 +19,8 @@ class animalcrossingviewmodel:ViewModel() {
     val sealivedata=MutableLiveData<List<seajsonItem>>()
     val errorlivedata=MutableLiveData<String>()
     val onefishlivedata=MutableLiveData<fishjsonItem>()
+    val onebuglivedata=MutableLiveData<bugjsonItem>()
+    val onesealivedata=MutableLiveData<seajsonItem>()
 
 
     fun getfish()
@@ -47,12 +49,7 @@ class animalcrossingviewmodel:ViewModel() {
 
     }
 
-    fun getonefish()
-    {
-        viewModelScope.launch(Dispatchers.IO) {
-            apirepository.getonefish()
-        }
-    }
+
 
 
 

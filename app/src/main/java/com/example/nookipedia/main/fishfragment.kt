@@ -30,7 +30,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class fishfragment : Fragment() {
-    var fisharray=ArrayList<fishjsonItem>()
     private val fishviewmodel:animalcrossingviewmodel by activityViewModels()
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var navcontroller: NavController
