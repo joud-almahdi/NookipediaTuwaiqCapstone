@@ -30,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/itemimageinbugdetailview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
                 tools:src="@tools:sample/avatars" />
 
@@ -45,6 +45,72 @@
 
     </androidx.cardview.widget.CardView>
 
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bugcardView">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/locationinbugdetailview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/profiledatashow"
+                    android:fontFamily="@font/animalcrossingfont"
+                    android:text="@string/location"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/nookpriceinbugdetailview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="21dp"
+                    android:background="@drawable/profiledatashow"
+                    android:fontFamily="@font/animalcrossingfont"
+                    android:text="@string/priceatnook"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/flickprice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/profiledatashow"
+                    android:fontFamily="@font/animalcrossingfont"
+                    android:text="@string/cjprice"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
@@ -54,17 +120,5 @@
         android:src="@drawable/bigblathers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/museumtextinbugdetailview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:layout_marginTop="72dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bugcardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

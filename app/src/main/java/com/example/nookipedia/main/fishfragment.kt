@@ -1,6 +1,7 @@
 package com.example.nookipedia.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
@@ -74,6 +75,20 @@ class fishfragment : Fragment() {
 
 
 
+
+
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId)
+        {
+            R.id.logout->startActivity(Intent(requireActivity(),loginactivity::class.java))
+            R.id.profile->findNavController().navigate(R.id.action_fishfragment_to_profile)
+            R.id.favorite->findNavController().navigate(R.id.action_fishfragment_to_favoritefragment)
+        }
+        return super.onOptionsItemSelected(item)
 
     }
 

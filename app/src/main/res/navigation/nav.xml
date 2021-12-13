@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_fishfragment_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_fishfragment_to_favoritefragment"
+            app:destination="@id/favoritefragment" />
     </fragment>
     <fragment
         android:id="@+id/detailfragment"
@@ -58,4 +61,9 @@
         android:name="com.example.nookipedia.main.seadetailFragment"
         android:label="fragment_seadetail"
         tools:layout="@layout/fragment_seadetail" />
+    <fragment
+        android:id="@+id/favoritefragment"
+        android:name="com.example.nookipedia.main.favoritefragment"
+        android:label="fragment_favoritefragment"
+        tools:layout="@layout/fragment_favoritefragment" />
 </navigation>

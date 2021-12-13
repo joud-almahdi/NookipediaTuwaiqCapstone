@@ -1,5 +1,7 @@
 package com.example.nookipedia.main
 
+import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,14 +32,22 @@ class seadetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
+        val sound: MediaPlayer = MediaPlayer.create(requireActivity(),R.raw.obtain)
+        sound.start()
+
 
     }
 
+    @SuppressLint("SetTextI18n")
     fun observers()
     {
         seaviewmodel.onesealivedata.observe(viewLifecycleOwner,{
             binding.catchingphraseinseadetailview.text=it.catchphrases[0]
             Picasso.get().load(it.renderUrl).into(binding.itemimageinseadetailview)
+            binding.movementspeedinseadetail.text="Movement Speed:........${it.shadowMovement}"
+            binding.shadowsizeinseadetailview.text="Shadow Size:........${it.shadowSize}"
+            binding.nookpriceinseadetailview.text="Price at Nook's cranny:........${it.sellNook} Bells"
+
 
         })
     }

@@ -1,5 +1,7 @@
 package com.example.nookipedia.main
 
+import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,14 +33,21 @@ class detailfragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
+        val sound: MediaPlayer = MediaPlayer.create(requireActivity(),R.raw.obtain)
+        sound.start()
 
     }
 
 
+    @SuppressLint("SetTextI18n")
     fun observers()
     {
         detailviewmodel.onefishlivedata.observe(viewLifecycleOwner,{
             binding.catchingphraseindetailview.text=it.catchphrases[0]
+            binding.locationindetailview.text="Location:........${it.location}"
+            binding.nookpriceindetailview.text="Price at Nook's cranny:........${it.sellNook} Bells"
+            binding.shadowsizeindetailview.text="Shadow Size:........${it.shadowSize}"
+            binding.cjprice.text="CJ's price:........${it.sellCj}  Bells"
             Picasso.get().load(it.renderUrl).into(binding.itemimageindetailview)
         })
     }

@@ -1,5 +1,7 @@
 package com.example.nookipedia.main
 
+import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,15 +31,23 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observers()
+        val sound: MediaPlayer = MediaPlayer.create(requireActivity(),R.raw.obtain)
+        sound.start()
+
 
     }
 
 
+    @SuppressLint("SetTextI18n")
     fun observers()
     {
         bugviewmodel.onebuglivedata.observe(viewLifecycleOwner,{
             binding.catchingphraseinbugdetailview.text=it.catchphrases[0]
             Picasso.get().load(it.renderUrl).into(binding.itemimageinbugdetailview)
+            binding.locationinbugdetailview.text="Location:........${it.location}"
+            binding.nookpriceinbugdetailview.text="Price at Nook's cranny:........${it.sellNook} Bells"
+            binding.nookpriceinbugdetailview.text="Flick's price:........${it.sellFlick}  Bells"
+
 
         })
     }
