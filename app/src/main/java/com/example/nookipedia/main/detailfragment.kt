@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.nookipedia.R
+import com.example.nookipedia.databinding.FragmentDetailfragmentBinding
+import com.example.nookipedia.models.animalcrossingviewmodel
+import com.squareup.picasso.Picasso
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 class detailfragment : Fragment() {
-
+    private lateinit var binding: FragmentDetailfragmentBinding
+    private val detailviewmodel:animalcrossingviewmodel by activityViewModels()
 
 
     override fun onCreateView(
@@ -19,7 +22,25 @@ class detailfragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detailfragment, container, false)
+        binding= FragmentDetailfragmentBinding.inflate(layoutInflater, container, false)
+        return binding.root
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observers()
+
+    }
+
+
+    fun observers()
+    {
+        detailviewmodel.onefishlivedata.observe(viewLifecycleOwner,{
+            binding.catchingphraseindetailview.text=it.catchphrases[0]
+            Picasso.get().load(it.renderUrl).into(binding.itemimageindetailview)
+        })
     }
 
 

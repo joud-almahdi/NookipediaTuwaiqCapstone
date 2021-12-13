@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailfragment"
-        android:name="com.example.nookipedia.detailfragment"
+        android:name="com.example.nookipedia.main.detailfragment"
         android:label="fragment_detailfragment"
         tools:layout="@layout/fragment_detailfragment" >
         <action

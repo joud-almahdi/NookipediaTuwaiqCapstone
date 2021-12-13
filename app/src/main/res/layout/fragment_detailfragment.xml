@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detailfragment">
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -16,7 +16,9 @@
         android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@color/Yellow"
+        >
 
 
         <LinearLayout
@@ -48,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/bigblathers"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,19 +66,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="408dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

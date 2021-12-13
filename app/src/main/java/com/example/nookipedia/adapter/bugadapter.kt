@@ -6,10 +6,30 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import com.example.nookipedia.R
+import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.animalcrossingviewmodel
+import com.squareup.picasso.Picasso
 
-class bugadapter(private val list: List<bugjsonItem>) :
+class bugadapter(bugviewmodel: animalcrossingviewmodel) :
     RecyclerView.Adapter<bugadapter.bugviewmodel>() {
+    val diffcallback= object: DiffUtil.ItemCallback<bugjsonItem>(){
+        override fun areItemsTheSame(oldItem: bugjsonItem, newItem: bugjsonItem): Boolean {
+            return oldItem.url==newItem.url
+        }
+
+        override fun areContentsTheSame(oldItem: bugjsonItem, newItem: bugjsonItem): Boolean {
+            return oldItem==newItem
+        }
+
+    }
+    private val differ= AsyncListDiffer(this,diffcallback)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): bugadapter.bugviewmodel {
         return bugviewmodel(
             LayoutInflater.from(parent.context).inflate(
@@ -21,14 +41,24 @@ class bugadapter(private val list: List<bugjsonItem>) :
     }
 
     override fun onBindViewHolder(holder: bugviewmodel, position: Int) {
-        val item = list[position]
-        TODO("bind view with data")
+        val item = differ.currentList[position]
+        holder.bugname.text=item.name
+        Picasso.get().load(item.imageUrl).into(holder.bugimage)
+
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return differ.currentList.size
+    }
+
+    fun submitbug(array:List<bugjsonItem>)
+    {
+        differ.submitList(array)
     }
 
     class bugviewmodel(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var bugname:TextView=itemView.findViewById(R.id.itemnameinitemlayout)
+        var bugimage:ImageView=itemView.findViewById(R.id.itemimageinitemlayout)
+
     }
 }
