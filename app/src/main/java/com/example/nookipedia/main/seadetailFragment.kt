@@ -60,6 +60,7 @@ class seadetailFragment : Fragment() {
                 val fave:MutableMap<String,Any> = hashMapOf()
                 fave["crittername"]=it.name
                 fave["userid"]=auth.currentUser!!.uid
+                fave["imageurl"]=it.imageUrl
 
                 db.collection("favorites").add(fave).addOnSuccessListener {
                     Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()

@@ -61,6 +61,7 @@ class detailfragment : Fragment() {
                 val db=FirebaseFirestore.getInstance()
                 val fave:MutableMap<String,Any> = hashMapOf()
                 fave["crittername"]=it.name
+                fave["imageurl"]=it.imageUrl
                 fave["userid"]=auth.currentUser!!.uid
 
                 db.collection("favorites").add(fave).addOnSuccessListener {

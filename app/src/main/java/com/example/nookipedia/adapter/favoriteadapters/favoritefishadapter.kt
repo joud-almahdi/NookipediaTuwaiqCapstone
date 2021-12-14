@@ -35,7 +35,7 @@ class favoritefishadapter() :
     ): favoritefishadapter.favoritefishviewholder {
         return favoritefishviewholder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_layout,
+                R.layout.favorite_item_layout,
                 parent,
                 false
             )
@@ -45,7 +45,7 @@ class favoritefishadapter() :
     override fun onBindViewHolder(holder: favoritefishviewholder, position: Int) {
         val item = differ.currentList[position]
         holder.fishcrittername.text=item.crittername
-        //Picasso.get().load(item.imageUrl).into(holder.fishcritterimage)
+        Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
 
     }
 
@@ -58,7 +58,7 @@ class favoritefishadapter() :
     }
 
     class favoritefishviewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val fishcrittername:TextView=itemView.findViewById(R.id.itemnameinitemlayout)
-     //   val fishcritterimage:ImageView=itemView.findViewById(R.id.itemimageinitemlayout)
+        val fishcrittername:TextView=itemView.findViewById(R.id.nameinfavoritelayout)
+        val fishcritterimage:ImageView=itemView.findViewById(R.id.imageinfavoritelayout)
     }
 }
