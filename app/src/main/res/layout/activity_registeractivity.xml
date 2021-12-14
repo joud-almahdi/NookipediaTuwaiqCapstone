@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CDE9CD"
-    tools:context=".main.loginfragment">
+    >
 
     <TextView
         android:id="@+id/textView"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/favoriteindetailview"
         android:layout_width="100dp"
         android:layout_height="96dp"
         android:src="@drawable/tomnook"

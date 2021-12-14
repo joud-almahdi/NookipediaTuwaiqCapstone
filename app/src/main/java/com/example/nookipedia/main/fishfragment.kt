@@ -33,7 +33,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class fishfragment : Fragment() {
     private val fishviewmodel:animalcrossingviewmodel by activityViewModels()
     private lateinit var binding: FragmentFishfragmentBinding
-    private lateinit var navcontroller: NavController
     private lateinit var adapter:fishadapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
