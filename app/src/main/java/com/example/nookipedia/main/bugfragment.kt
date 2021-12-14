@@ -48,6 +48,8 @@ class bugfragment : Fragment() {
         observers()
         bugviewmodel.getbug()
 
+
+
     }
 
 

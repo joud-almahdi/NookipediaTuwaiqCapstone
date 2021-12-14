@@ -21,7 +21,7 @@
         >
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/favoriteinbugdetail"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="right"
