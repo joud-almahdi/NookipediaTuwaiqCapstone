@@ -1,5 +1,6 @@
 package com.example.nookipedia.main
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,8 @@ class registeractivity : AppCompatActivity() {
     private val validator=registerunittesting()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        shared=getSharedPreferences("Auth", Context.MODE_PRIVATE)
+        sharededitor=shared.edit()
         binding= ActivityRegisteractivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,8 +41,13 @@ class registeractivity : AppCompatActivity() {
                         if(it.isSuccessful)
                         {
                             val firebaseuser: FirebaseUser =it.result!!.user!!
+
+                            sharededitor.putBoolean("status",true)
+                            sharededitor.putString("uid",user!!.uid)
+                            sharededitor.putString("email",user!!.email)
+                            sharededitor.commit()
                             Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
-                            //var bundle= bundleOf("id" to firebaseuser.uid,"email" to firebaseuser.email)
+
                             val intent=Intent(this,MainActivity::class.java)
                             startActivity(intent)
                             finish()

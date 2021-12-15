@@ -16,6 +16,8 @@ import com.example.nookipedia.databinding.FragmentFavoritefragmentBinding
 import com.example.nookipedia.json.fishjason.fishjsonItem
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.google.firebase.firestore.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class favoritefragment : Fragment() {
@@ -78,6 +80,23 @@ class favoritefragment : Fragment() {
 
         })
 
+
+
+    }
+
+
+    fun delete()
+    {
+        val fave= Firebase.firestore.collection("favorites")
+        val favetobedeleted=fave.whereEqualTo("crittername","Dungeness Crab")
+        try {
+            fave.document().delete()
+
+        }
+        catch (e:Exception)
+        {
+            Toast.makeText(requireActivity(), "error", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

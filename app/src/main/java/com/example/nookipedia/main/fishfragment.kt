@@ -1,7 +1,10 @@
 package com.example.nookipedia.main
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.widget.SearchView
@@ -34,17 +37,22 @@ class fishfragment : Fragment() {
     private val fishviewmodel:animalcrossingviewmodel by activityViewModels()
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var adapter:fishadapter
+    lateinit var sharededitor: SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
 
+    @SuppressLint("CommitPrefEdits")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        shared=requireActivity().getSharedPreferences("Auth",MODE_PRIVATE)
+        sharededitor= shared.edit()
+        //Toast.makeText(requireActivity(), shared.getString("uid","0"), Toast.LENGTH_SHORT).show()
         binding= FragmentFishfragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
 
@@ -83,7 +91,9 @@ class fishfragment : Fragment() {
 
         when(item.itemId)
         {
-            R.id.logout->startActivity(Intent(requireActivity(),loginactivity::class.java))
+            R.id.logout->{ sharededitor.putBoolean("status",false)
+                sharededitor.commit()
+                startActivity(Intent(requireActivity(),loginactivity::class.java))}
             R.id.profile->findNavController().navigate(R.id.action_fishfragment_to_profile)
             R.id.favorite->findNavController().navigate(R.id.action_fishfragment_to_favoritefragment)
         }

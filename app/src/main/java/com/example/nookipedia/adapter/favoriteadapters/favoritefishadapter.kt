@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
  import android.widget.ImageView
  import android.widget.TextView
+ import android.widget.Toast
  import androidx.recyclerview.widget.AsyncListDiffer
  import androidx.recyclerview.widget.DiffUtil
  import com.example.nookipedia.R
  import com.example.nookipedia.data.favorites
  import com.example.nookipedia.json.fishjason.fishjsonItem
  import com.example.nookipedia.models.animalcrossingviewmodel
+ import com.google.firebase.firestore.FirebaseFirestore
+ import com.google.firebase.firestore.ktx.firestore
+ import com.google.firebase.ktx.Firebase
  import com.squareup.picasso.Picasso
 
 class favoritefishadapter() :
@@ -47,7 +51,25 @@ class favoritefishadapter() :
         holder.fishcrittername.text=item.crittername
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
 
+        holder.delete.setOnClickListener {
+            delete(holder.fishcrittername.text.toString())
+
+
+        }
+
     }
+
+    fun delete(nam:String)
+    {
+       val db= FirebaseFirestore.getInstance()
+        db.collection("favorites").document(nam).delete().addOnCompleteListener {
+          //dddd
+        }
+
+    }
+
+
+
 
     override fun getItemCount(): Int {
         return differ.currentList.size
@@ -60,5 +82,6 @@ class favoritefishadapter() :
     class favoritefishviewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val fishcrittername:TextView=itemView.findViewById(R.id.nameinfavoritelayout)
         val fishcritterimage:ImageView=itemView.findViewById(R.id.imageinfavoritelayout)
+        val delete:ImageView=itemView.findViewById(R.id.deleteinfavoritelayout)
     }
 }
