@@ -40,7 +40,7 @@ class registeractivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if(it.isSuccessful)
                         {
-                            val firebaseuser: FirebaseUser =it.result!!.user!!
+
 
                             sharededitor.putBoolean("status",true)
                             sharededitor.putString("uid",user!!.uid)
@@ -64,7 +64,6 @@ class registeractivity : AppCompatActivity() {
             {
                 Toast.makeText(this, "Email is invalid", Toast.LENGTH_SHORT).show()
             }
-
 
 
         }

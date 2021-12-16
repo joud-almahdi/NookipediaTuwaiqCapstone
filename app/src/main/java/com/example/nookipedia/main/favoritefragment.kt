@@ -15,6 +15,8 @@ import com.example.nookipedia.data.favorites
 import com.example.nookipedia.databinding.FragmentFavoritefragmentBinding
 import com.example.nookipedia.json.fishjason.fishjsonItem
 import com.example.nookipedia.models.animalcrossingviewmodel
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -54,8 +56,9 @@ class favoritefragment : Fragment() {
     fun EventListener()
     {
         db= FirebaseFirestore.getInstance()
-        db.collection("favorites").addSnapshotListener(object:EventListener<QuerySnapshot>
+        db.collection("favorites").whereEqualTo("userid",Firebase.auth.currentUser!!.uid).addSnapshotListener(object:EventListener<QuerySnapshot>
         {
+
             override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
 
                 if(error!=null)
@@ -76,6 +79,7 @@ class favoritefragment : Fragment() {
                     }
                 }
                 adapter.notifyDataSetChanged()
+
             }
 
         })

@@ -51,11 +51,6 @@ class favoritefishadapter() :
         holder.fishcrittername.text=item.crittername
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
 
-        holder.delete.setOnClickListener {
-            delete(holder.fishcrittername.text.toString())
-
-
-        }
 
     }
 

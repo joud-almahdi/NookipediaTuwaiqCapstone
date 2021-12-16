@@ -47,27 +47,39 @@ class seadetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     fun observers()
     {
-        seaviewmodel.onesealivedata.observe(viewLifecycleOwner,{
-            binding.catchingphraseinseadetailview.text=it.catchphrases[0]
-            Picasso.get().load(it.renderUrl).into(binding.itemimageinseadetailview)
-            binding.movementspeedinseadetail.text="Movement Speed:........${it.shadowMovement}"
-            binding.shadowsizeinseadetailview.text="Shadow Size:........${it.shadowSize}"
-            binding.nookpriceinseadetailview.text="Price at Nook's cranny:........${it.sellNook} Bells"
+        seaviewmodel.onesealivedata.observe(viewLifecycleOwner,{fish->
+            binding.catchingphraseinseadetailview.text=fish.catchphrases[0]
+            Picasso.get().load(fish.renderUrl).into(binding.itemimageinseadetailview)
+            binding.movementspeedinseadetail.text="Movement Speed:........${fish.shadowMovement}"
+            binding.shadowsizeinseadetailview.text="Shadow Size:........${fish.shadowSize}"
+            binding.nookpriceinseadetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
 
 
             binding.favoriteinseadetail.setOnClickListener { click->
-                val db= FirebaseFirestore.getInstance()
+                val db=FirebaseFirestore.getInstance()
                 val fave:MutableMap<String,Any> = hashMapOf()
-                fave["crittername"]=it.name
-                fave["userid"]=auth.currentUser!!.uid
-                fave["imageurl"]=it.imageUrl
 
-                db.collection("favorites").add(fave).addOnSuccessListener {
-                    Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
-                }
-                    .addOnFailureListener{
-                        Toast.makeText(requireActivity(), it.message.toString(), Toast.LENGTH_SHORT).show()
+
+                db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
+                    if(it.count()>0)
+                    {
+                        Toast.makeText(requireActivity(), "This critter already exists", Toast.LENGTH_SHORT).show()
                     }
+                    else
+                    {
+                        fave["crittername"]=fish.name
+                        fave["imageurl"]=fish.imageUrl
+                        fave["userid"]=auth.currentUser!!.uid
+                        db.collection("favorites").add(fave).addOnSuccessListener {
+                            Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
+                        }
+                            .addOnFailureListener{
+                                Toast.makeText(requireActivity(), it.message.toString(), Toast.LENGTH_SHORT).show()
+                            }
+                    }
+
+
+                }
             }
 
 
