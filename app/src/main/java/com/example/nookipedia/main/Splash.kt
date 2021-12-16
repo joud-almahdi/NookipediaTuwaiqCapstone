@@ -9,6 +9,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.ActivitySplashBinding
 import com.example.nookipedia.repositories.apirepository
+import com.example.nookipedia.repositories.firebaserepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -30,6 +31,7 @@ class Splash : AppCompatActivity() {
 
 
         apirepository.init(this)
+        firebaserepository.init(this)
         binding.motion.setTransitionListener(object:MotionLayout.TransitionListener{
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,

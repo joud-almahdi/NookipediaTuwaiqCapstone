@@ -58,7 +58,8 @@ class favoritefishadapter() :
     {
        val db= FirebaseFirestore.getInstance()
         db.collection("favorites").document(nam).delete().addOnCompleteListener {
-          //dddd
+
+
         }
 
     }
