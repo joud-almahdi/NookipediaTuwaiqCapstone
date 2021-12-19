@@ -1,6 +1,7 @@
 package com.example.nookipedia.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -55,7 +56,7 @@ class seadetailFragment : Fragment() {
             binding.nookpriceinseadetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
 
 
-            binding.favoriteinseadetail.setOnClickListener { click->
+            binding.favoriteinseadetailview.setOnClickListener { click->
                 val db=FirebaseFirestore.getInstance()
                 val fave:MutableMap<String,Any> = hashMapOf()
 
@@ -82,7 +83,12 @@ class seadetailFragment : Fragment() {
                 }
             }
 
-
+            binding.shareimageinseaview.setOnClickListener {
+                val intent= Intent(Intent.ACTION_SEND)
+                intent.setType("text/plain")
+                intent.putExtra(Intent.EXTRA_TEXT,fish.url)
+                startActivity(Intent.createChooser(intent, "Share link using"))
+            }
         })
     }
 

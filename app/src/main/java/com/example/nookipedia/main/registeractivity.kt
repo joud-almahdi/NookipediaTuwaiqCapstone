@@ -1,10 +1,15 @@
 package com.example.nookipedia.main
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.nookipedia.R
@@ -16,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser
 
 private lateinit var binding: ActivityRegisteractivityBinding
 class registeractivity : AppCompatActivity() {
+
+    var Channelid:String="456"
+    var notificationid:Int=1
 
     private val validator=registerunittesting()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +57,7 @@ class registeractivity : AppCompatActivity() {
                             Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
 
                             val intent=Intent(this,MainActivity::class.java)
+                            createNotificationChannel("Registeration completed","Hello!, your user id is ${user!!.uid}",notificationid)
                             startActivity(intent)
                             finish()
 
@@ -68,4 +77,46 @@ class registeractivity : AppCompatActivity() {
 
         }
     }
+
+
+
+
+
+
+    //Create the channel needed for setting notifications
+    private fun createNotificationChannel(name:String,descriptionText:String,id:Int) {
+        val notificationBuilder =
+            NotificationCompat.Builder(this, Channelid)
+                .setSmallIcon(R.drawable.nook)
+                .setContentTitle(name)
+                .setContentText(descriptionText)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "SSSS"
+            var descriptionText = "A text"
+            var importance = NotificationManager.IMPORTANCE_DEFAULT
+            var channel = NotificationChannel(Channelid, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+            with(NotificationManagerCompat.from(this)) {
+                // notificationId is a unique int for each notification that you must define
+                notify(notificationid, notificationBuilder.build())
+            }
+
+
+        }
+
+    }
+
+
+
+
+
+
 }

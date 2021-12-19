@@ -11,11 +11,9 @@ class apirepository(val context: Context) {
         GsonConverterFactory.create()).build()
     val retrofitapi=retro.create(animalcrossingapi::class.java)
    suspend fun getfish()=retrofitapi.getfish()
-   suspend fun getonefish()=retrofitapi.getonefish()
-    suspend fun getonebug()=retrofitapi.getonebug()
    suspend fun getbug()=retrofitapi.getbug()
    suspend fun getsea()=retrofitapi.getsea()
-    suspend fun getonesea()=retrofitapi.getonesea()
+
 
 
 

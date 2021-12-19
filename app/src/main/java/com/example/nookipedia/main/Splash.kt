@@ -55,12 +55,14 @@ class Splash : AppCompatActivity() {
                 if(shared.getBoolean("status",false)) {
                     val intent = Intent(this@Splash,MainActivity::class.java)
                     startActivity(intent)
+                    finish()
 
                 }
                 else
                 {
                     val intent2 = Intent(this@Splash,loginactivity::class.java)
                     startActivity(intent2)
+                    finish()
 
                 }
 

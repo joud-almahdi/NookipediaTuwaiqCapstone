@@ -93,7 +93,9 @@ class fishfragment : Fragment() {
         {
             R.id.logout->{ sharededitor.putBoolean("status",false)
                 sharededitor.commit()
-                startActivity(Intent(requireActivity(),loginactivity::class.java))}
+                startActivity(Intent(requireActivity(),loginactivity::class.java))
+                    requireActivity().finish()
+            }
             R.id.profile->findNavController().navigate(R.id.action_fishfragment_to_profile)
             R.id.favorite->findNavController().navigate(R.id.action_fishfragment_to_favoritefragment)
         }

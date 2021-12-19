@@ -1,6 +1,7 @@
 package com.example.nookipedia.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -54,7 +55,7 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
             binding.nookpriceinbugdetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
             binding.nookpriceinbugdetailview.text="Flick's price:........${fish.sellFlick}  Bells"
 
-            binding.favoriteinbugdetail.setOnClickListener { click->
+            binding.favoriteinbugdetailview.setOnClickListener { click->
                 val db=FirebaseFirestore.getInstance()
                 val fave:MutableMap<String,Any> = hashMapOf()
 
@@ -79,6 +80,13 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
 
 
                 }
+            }
+
+            binding.shareimageinbugview.setOnClickListener {
+                val intent= Intent(Intent.ACTION_SEND)
+                intent.setType("text/plain")
+                intent.putExtra(Intent.EXTRA_TEXT,fish.url)
+                startActivity(Intent.createChooser(intent, "Share link using"))
             }
 
 
