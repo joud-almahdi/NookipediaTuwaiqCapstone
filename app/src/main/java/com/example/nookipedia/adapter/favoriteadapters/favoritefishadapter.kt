@@ -67,6 +67,11 @@ class favoritefishadapter(val context: Context) :
         }
 
 
+        holder.note.setOnClickListener {
+            showdialog(item.favid)
+        }
+
+
 
 
 
@@ -96,6 +101,45 @@ class favoritefishadapter(val context: Context) :
 
         }
 
+    }
+
+
+
+
+
+    fun showdialog(id:String?){
+        val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(context)
+        builder.setTitle("Critternote")
+
+
+        val input = EditText(context)
+
+        input.setHint("Your note?")
+        input.inputType = InputType.TYPE_CLASS_TEXT
+
+        builder.setView(input)
+
+
+        builder.setPositiveButton("Done", DialogInterface.OnClickListener { dialog, which ->
+            // Here you get get input text from the Edittext
+            var enterednote = input.text.toString()
+
+            val db= FirebaseFirestore.getInstance()
+            if (id != null) {
+                db.collection("favorites").document(id).update("favnote",enterednote).addOnSuccessListener {
+                    Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show()
+                    submittedlist(differ.currentList)
+                }
+                    .addOnFailureListener { e->
+                        Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                    }
+
+            }
+
+        })
+        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+        builder.show()
     }
 
 
