@@ -37,7 +37,7 @@ class favoritefragment : Fragment() {
         // Inflate the layout for this fragment
 
       binding=FragmentFavoritefragmentBinding.inflate(layoutInflater, container, false)
-    adapter= favoritefishadapter()
+    adapter= favoritefishadapter(requireActivity())
     adapter.submittedlist(favefish)
     binding.favoriterecyclerview.adapter=adapter
     return binding.root

@@ -1,5 +1,6 @@
 package com.example.nookipedia.adapter.favoriteadaptersimport
 
+ import android.content.Context
  import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,13 @@ import android.view.ViewGroup
  import com.example.nookipedia.data.favorites
  import com.example.nookipedia.json.fishjason.fishjsonItem
  import com.example.nookipedia.models.animalcrossingviewmodel
+ import com.google.firebase.auth.ktx.auth
  import com.google.firebase.firestore.FirebaseFirestore
  import com.google.firebase.firestore.ktx.firestore
  import com.google.firebase.ktx.Firebase
  import com.squareup.picasso.Picasso
 
-class favoritefishadapter() :
+class favoritefishadapter(val context: Context) :
 
     RecyclerView.Adapter<favoritefishadapter.favoritefishviewholder>() {
     val diffcallback= object: DiffUtil.ItemCallback<favorites>()
@@ -51,18 +53,33 @@ class favoritefishadapter() :
         holder.fishcrittername.text=item.crittername
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
 
+        holder.delete.setOnClickListener {
+            delete(item.favid)
 
-    }
-
-    fun delete(nam:String)
-    {
-       val db= FirebaseFirestore.getInstance()
-        db.collection("favorites").document(nam).delete().addOnCompleteListener {
-
+            var newlist= mutableListOf<favorites>()
+            newlist.addAll(differ.currentList)
+            newlist.removeAt(position)
+            submittedlist(newlist)
 
         }
 
+
+
+
     }
+    fun delete(nam:String?)
+    {
+        val db= FirebaseFirestore.getInstance()
+        if (nam != null) {
+            db.collection("favorites").document(nam).delete().addOnSuccessListener {
+                Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+                submittedlist(differ.currentList)
+            }
+        }
+
+    }
+
+
 
 
 

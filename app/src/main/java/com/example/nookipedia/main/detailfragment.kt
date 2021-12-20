@@ -74,6 +74,7 @@ class detailfragment : Fragment() {
                         fave["crittername"]=fish.name
                         fave["imageurl"]=fish.imageUrl
                         fave["userid"]=auth.currentUser!!.uid
+                        fave["favid"]=fish.number.toString()
                         db.collection("favorites").add(fave).addOnSuccessListener {
                             Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
                         }
