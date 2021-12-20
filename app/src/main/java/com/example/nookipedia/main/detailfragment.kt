@@ -61,7 +61,7 @@ class detailfragment : Fragment() {
 
             binding.favoriteindetailview.setOnClickListener { click->
                 val db=FirebaseFirestore.getInstance()
-                val fave:MutableMap<String,Any> = hashMapOf()
+
 
 
                 db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
@@ -71,16 +71,21 @@ class detailfragment : Fragment() {
                     }
                     else
                     {
-                        fave["crittername"]=fish.name
-                        fave["imageurl"]=fish.imageUrl
-                        fave["userid"]=auth.currentUser!!.uid
-                        fave["favid"]=fish.number.toString()
-                        db.collection("favorites").add(fave).addOnSuccessListener {
-                            Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
-                        }
-                            .addOnFailureListener{
-                                Toast.makeText(requireActivity(), it.message.toString(), Toast.LENGTH_SHORT).show()
-                            }
+                        val fave:MutableMap<String,Any> = hashMapOf(
+                            "userid" to auth.currentUser!!.uid,
+                            "crittername" to fish.name,
+                        "imageurl" to fish.imageUrl,
+                            "favnote" to "",
+                        "favid" to fish.number.toString()
+                        )
+                        val id=fish.number.toString()
+
+                        db.collection("favorites").document(id)
+                            .set(fave)
+                            .addOnSuccessListener {
+                                Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()}
+                            .addOnFailureListener { e ->
+                                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
                     }
 
 

@@ -1,10 +1,14 @@
 package com.example.nookipedia.adapter.favoriteadaptersimport
 
+ import android.app.AlertDialog
  import android.content.Context
+ import android.content.DialogInterface
+ import android.text.InputType
  import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+ import android.widget.EditText
  import android.widget.ImageView
  import android.widget.TextView
  import android.widget.Toast
@@ -55,7 +59,6 @@ class favoritefishadapter(val context: Context) :
 
         holder.delete.setOnClickListener {
             delete(item.favid)
-
             var newlist= mutableListOf<favorites>()
             newlist.addAll(differ.currentList)
             newlist.removeAt(position)
@@ -66,7 +69,19 @@ class favoritefishadapter(val context: Context) :
 
 
 
+
+
+
     }
+
+
+
+
+
+
+
+
+
     fun delete(nam:String?)
     {
         val db= FirebaseFirestore.getInstance()
@@ -75,6 +90,10 @@ class favoritefishadapter(val context: Context) :
                 Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
                 submittedlist(differ.currentList)
             }
+                .addOnFailureListener { e->
+                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                }
+
         }
 
     }
@@ -96,5 +115,6 @@ class favoritefishadapter(val context: Context) :
         val fishcrittername:TextView=itemView.findViewById(R.id.nameinfavoritelayout)
         val fishcritterimage:ImageView=itemView.findViewById(R.id.imageinfavoritelayout)
         val delete:ImageView=itemView.findViewById(R.id.deleteinfavoritelayout)
+        val note:TextView=itemView.findViewById(R.id.notestextviewinfavoritelayout)
     }
 }
