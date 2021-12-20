@@ -23,8 +23,8 @@
     <fragment
         android:id="@+id/detailfragment"
         android:name="com.example.nookipedia.main.detailfragment"
-        android:label="fragment_detailfragment"
-        tools:layout="@layout/fragment_detailfragment" >
+        android:label="@string/detail"
+        tools:layout="@layout/fragment_detailfragment">
         <action
             android:id="@+id/action_detailfragment_to_fishfragment"
             app:destination="@id/fishfragment" />
@@ -32,13 +32,13 @@
     <fragment
         android:id="@+id/profile"
         android:name="com.example.nookipedia.main.profile"
-        android:label="fragment_profile"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/bugfragment"
         android:name="com.example.nookipedia.main.bugfragment"
         android:label="@string/bug"
-        tools:layout="@layout/fragment_bugfragment" >
+        tools:layout="@layout/fragment_bugfragment">
         <action
             android:id="@+id/action_bugfragment_to_bugdetailfragment"
             app:destination="@id/bugdetailfragment" />
@@ -55,15 +55,15 @@
     <fragment
         android:id="@+id/bugdetailfragment"
         android:name="com.example.nookipedia.main.bugdetailfragment"
-        android:label="bugdetailfragment" />
+        android:label="@string/detail" />
     <fragment
         android:id="@+id/seadetailFragment"
         android:name="com.example.nookipedia.main.seadetailFragment"
-        android:label="fragment_seadetail"
+        android:label="@string/detail"
         tools:layout="@layout/fragment_seadetail" />
     <fragment
         android:id="@+id/favoritefragment"
         android:name="com.example.nookipedia.main.favoritefragment"
-        android:label="fragment_favoritefragment"
+        android:label="@string/favorite"
         tools:layout="@layout/fragment_favoritefragment" />
 </navigation>

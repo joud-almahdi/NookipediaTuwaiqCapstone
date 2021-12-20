@@ -19,4 +19,5 @@
     <string name="shadowsize">Shadow Size</string>
     <string name="priceatnook">Price at Nook\'s Cranny</string>
     <string name="cjprice">CJ\'s Price</string>
+    <string name="detail">Details</string>
 </resources>

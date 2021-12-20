@@ -73,18 +73,7 @@ class favoritefishadapter(val context: Context) :
 
 
 
-
-
-
-
     }
-
-
-
-
-
-
-
 
 
     fun delete(nam:String?)
@@ -121,20 +110,27 @@ class favoritefishadapter(val context: Context) :
 
 
         builder.setPositiveButton("Done", DialogInterface.OnClickListener { dialog, which ->
-            // Here you get get input text from the Edittext
+
             var enterednote = input.text.toString()
 
             val db= FirebaseFirestore.getInstance()
-            if (id != null) {
-                db.collection("favorites").document(id).update("favnote",enterednote).addOnSuccessListener {
-                    Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show()
-                    submittedlist(differ.currentList)
-                }
-                    .addOnFailureListener { e->
-                        Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+            if (enterednote.isNotEmpty())
+            {
+                if (id != null) {
+                    db.collection("favorites").document(id).update("favnote",enterednote).addOnSuccessListener {
+                        Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show()
+                        submittedlist(differ.currentList)
                     }
-
+                        .addOnFailureListener { e->
+                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
+            else
+            {
+                Toast.makeText(context, "Your note was empty, try again", Toast.LENGTH_SHORT).show()
+            }
+
 
         })
         builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
