@@ -75,7 +75,6 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
                             "favid" to fish.number.toString()
                         )
 
-
                         db.collection("favorites").document(fish.number.toString())
                             .set(fave)
                             .addOnSuccessListener {
@@ -83,8 +82,6 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
                             .addOnFailureListener { e ->
                                 Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
                     }
-
-
                 }
             }
 

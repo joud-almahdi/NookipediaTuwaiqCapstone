@@ -15,10 +15,10 @@ class firebaserepository(val context:Context) {
     val db=FirebaseFirestore.getInstance()
 
 
-    fun updatefave()={//later
-    }
+    fun updatefave(id:String,note:String)=db.collection("favorites").document(id).update("favnote",note)
 
-    fun deletefave(id:String)=  db.collection("favorites").document(id).delete()
+
+    fun deletefave(id:String)=db.collection("favorites").document(id).delete()
 
         fun retreivefaves()= db.collection("favorites").whereEqualTo("userid",Firebase.auth.currentUser!!.uid)
 

@@ -1,5 +1,6 @@
 package com.example.nookipedia.adapter.favoriteadaptersimport
 
+ import android.annotation.SuppressLint
  import android.app.AlertDialog
  import android.content.Context
  import android.content.DialogInterface
@@ -19,6 +20,7 @@ import android.view.ViewGroup
  import com.example.nookipedia.json.fishjason.fishjsonItem
  import com.example.nookipedia.models.animalcrossingviewmodel
  import com.google.firebase.auth.ktx.auth
+ import com.google.firebase.firestore.DocumentSnapshot
  import com.google.firebase.firestore.FirebaseFirestore
  import com.google.firebase.firestore.ktx.firestore
  import com.google.firebase.ktx.Firebase
@@ -52,16 +54,29 @@ class favoritefishadapter(val context: Context) :
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: favoritefishviewholder, position: Int) {
+        var newlist= mutableListOf<favorites>()
         val item = differ.currentList[position]
         holder.fishcrittername.text=item.crittername
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
+        if(item.favnote!="")
+        {
+            holder.note.setText(item.favnote)
+        }
+        else
+        {
+            holder.note.setText("Got any Notes?")
+        }
 
         holder.delete.setOnClickListener {
             delete(item.favid)
-            var newlist= mutableListOf<favorites>()
+
             newlist.addAll(differ.currentList)
             newlist.removeAt(position)
+
+
+
             submittedlist(newlist)
 
         }
@@ -69,6 +84,7 @@ class favoritefishadapter(val context: Context) :
 
         holder.note.setOnClickListener {
             showdialog(item.favid)
+
         }
 
 
@@ -98,12 +114,26 @@ class favoritefishadapter(val context: Context) :
 
     fun showdialog(id:String?){
         val builder: AlertDialog.Builder = android.app.AlertDialog.Builder(context)
+        val db= FirebaseFirestore.getInstance()
         builder.setTitle("Critternote")
-
-
         val input = EditText(context)
+        if (id != null) {
+            db.collection("favorites").document(id).addSnapshotListener { value, error ->
+               if(value?.get("favnote")=="")
+               {
+                   input.setHint("Your note?")
+               }
+                else
+               {
+                   input.setText(value?.getString("favnote"),TextView.BufferType.EDITABLE)
+               }
 
-        input.setHint("Your note?")
+            }
+
+        }
+
+
+
         input.inputType = InputType.TYPE_CLASS_TEXT
 
         builder.setView(input)

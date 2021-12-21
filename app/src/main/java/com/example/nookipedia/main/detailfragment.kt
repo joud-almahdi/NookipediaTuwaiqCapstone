@@ -62,8 +62,6 @@ class detailfragment : Fragment() {
             binding.favoriteindetailview.setOnClickListener { click->
                 val db=FirebaseFirestore.getInstance()
 
-
-
                 db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
                     if(it.count()>0)
                     {

@@ -12,17 +12,21 @@ import java.lang.Exception
 
 class firebaseviewmodel:ViewModel() {
     val firerepo:firebaserepository= firebaserepository.get()
-    var favoritelivedata=MutableLiveData<favorites>()
+    var favoritelivedata=MutableLiveData<List<favorites>>()
     var firebaseerrordata=MutableLiveData<String>()
+
+
+    init {
+
+
+    }
 
 
     fun deletefave(id:String)
     {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response=firerepo.deletefave(id)
-
-
             }
             catch (e:Exception)
             {
@@ -35,9 +39,17 @@ class firebaseviewmodel:ViewModel() {
 
 
 
-    fun updatefave()
+    fun updatefave(id:String,note:String)
     {
-        TODO()
+        viewModelScope.launch {
+            try {
+                firerepo.updatefave(id,note)
+            }
+            catch (e:Exception)
+            {
+                firebaseerrordata.postValue(e.message)
+            }
+        }
     }
 
 
@@ -61,7 +73,12 @@ class firebaseviewmodel:ViewModel() {
 
     fun newuser()
     {
-        TODO()
+        viewModelScope.launch(Dispatchers.IO) {
+
+
+
+        }
+
     }
 
 }
