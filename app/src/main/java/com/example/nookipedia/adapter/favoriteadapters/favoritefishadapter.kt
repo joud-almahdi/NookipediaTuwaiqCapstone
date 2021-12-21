@@ -7,12 +7,15 @@ import android.view.ViewGroup
  import android.widget.ImageView
  import android.widget.TextView
  import android.widget.Toast
+ import androidx.fragment.app.activityViewModels
  import androidx.recyclerview.widget.AsyncListDiffer
  import androidx.recyclerview.widget.DiffUtil
  import com.example.nookipedia.R
  import com.example.nookipedia.data.favorites
  import com.example.nookipedia.json.fishjason.fishjsonItem
+ import com.example.nookipedia.main.auth
  import com.example.nookipedia.models.animalcrossingviewmodel
+ import com.example.nookipedia.models.firebaseviewmodel
  import com.google.firebase.firestore.FirebaseFirestore
  import com.google.firebase.firestore.ktx.firestore
  import com.google.firebase.ktx.Firebase
@@ -21,6 +24,7 @@ import android.view.ViewGroup
 class favoritefishadapter() :
 
     RecyclerView.Adapter<favoritefishadapter.favoritefishviewholder>() {
+    var removedPosition : Int ? = null
     val diffcallback= object: DiffUtil.ItemCallback<favorites>()
     {
         override fun areItemsTheSame(oldItem: favorites, newItem: favorites): Boolean {
@@ -52,15 +56,23 @@ class favoritefishadapter() :
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
 
 
+        holder.delete.setOnClickListener {
+
+
+        }
+
+
+
+
     }
 
     fun delete(nam:String)
     {
        val db= FirebaseFirestore.getInstance()
-        db.collection("favorites").document(nam).delete().addOnCompleteListener {
+        db.collection("favorites").whereEqualTo("crittername",nam).whereEqualTo("userid",auth.currentUser!!.uid)
 
 
-        }
+
 
     }
 

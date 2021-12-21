@@ -15,6 +15,7 @@ import com.example.nookipedia.data.favorites
 import com.example.nookipedia.databinding.FragmentFavoritefragmentBinding
 import com.example.nookipedia.json.fishjason.fishjsonItem
 import com.example.nookipedia.models.animalcrossingviewmodel
+import com.example.nookipedia.models.firebaseviewmodel
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.*
@@ -47,6 +48,9 @@ class favoritefragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         EventListener()
+
+
+
 
 
     }
