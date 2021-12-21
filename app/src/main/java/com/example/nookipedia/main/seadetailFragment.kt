@@ -58,7 +58,7 @@ class seadetailFragment : Fragment() {
 
             binding.favoriteinseadetailview.setOnClickListener { click->
                 val db=FirebaseFirestore.getInstance()
-                val fave:MutableMap<String,Any> = hashMapOf()
+
 
 
                 db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
@@ -68,15 +68,21 @@ class seadetailFragment : Fragment() {
                     }
                     else
                     {
-                        fave["crittername"]=fish.name
-                        fave["imageurl"]=fish.imageUrl
-                        fave["userid"]=auth.currentUser!!.uid
-                        db.collection("favorites").add(fave).addOnSuccessListener {
-                            Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()
-                        }
-                            .addOnFailureListener{
-                                Toast.makeText(requireActivity(), it.message.toString(), Toast.LENGTH_SHORT).show()
-                            }
+                        val fave:MutableMap<String,Any> = hashMapOf(
+                            "userid" to auth.currentUser!!.uid,
+                            "crittername" to fish.name,
+                            "imageurl" to fish.imageUrl,
+                            "favnote" to "",
+                            "favid" to fish.number.toString()
+                        )
+
+
+                        db.collection("favorites").document(fish.number.toString())
+                            .set(fave)
+                            .addOnSuccessListener {
+                                Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()}
+                            .addOnFailureListener { e ->
+                                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
                     }
 
 

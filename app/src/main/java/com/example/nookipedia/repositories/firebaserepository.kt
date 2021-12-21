@@ -18,11 +18,11 @@ class firebaserepository(val context:Context) {
     fun updatefave()={//later
     }
 
-    fun deletefave(name:String)=db.collection("favorites").whereEqualTo("crittername",name).whereEqualTo("userid",auth.currentUser!!.uid).get()
+    fun deletefave(id:String)=  db.collection("favorites").document(id).delete()
 
         fun retreivefaves()= db.collection("favorites").whereEqualTo("userid",Firebase.auth.currentUser!!.uid)
 
-    fun addfave(name:String)= db.collection("favorites").whereEqualTo("crittername",name).whereEqualTo("userid",auth.currentUser!!.uid).get()
+    fun addfave( name:String)= db.collection("favorites").whereEqualTo("crittername",name).whereEqualTo("userid",auth.currentUser!!.uid).get()
     fun registeruser(enteredemail:String,enteredpassword:String)=FirebaseAuth.getInstance().createUserWithEmailAndPassword(enteredemail,enteredpassword)
 
 
