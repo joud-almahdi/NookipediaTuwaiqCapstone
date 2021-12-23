@@ -19,6 +19,7 @@ import android.view.ViewGroup
  import com.example.nookipedia.data.favorites
  import com.example.nookipedia.json.fishjason.fishjsonItem
  import com.example.nookipedia.models.animalcrossingviewmodel
+ import com.example.nookipedia.models.firebaseviewmodel
  import com.google.firebase.auth.ktx.auth
  import com.google.firebase.firestore.DocumentSnapshot
  import com.google.firebase.firestore.FirebaseFirestore
@@ -26,7 +27,7 @@ import android.view.ViewGroup
  import com.google.firebase.ktx.Firebase
  import com.squareup.picasso.Picasso
 
-class favoritefishadapter(val context: Context) :
+class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
     RecyclerView.Adapter<favoritefishadapter.favoritefishviewholder>() {
     val diffcallback= object: DiffUtil.ItemCallback<favorites>()
@@ -70,8 +71,8 @@ class favoritefishadapter(val context: Context) :
         }
 
         holder.delete.setOnClickListener {
-            delete(item.favid)
 
+                fave.deletefave(item.favid!!)
             newlist.addAll(differ.currentList)
             newlist.removeAt(position)
 
@@ -92,21 +93,21 @@ class favoritefishadapter(val context: Context) :
     }
 
 
-    fun delete(nam:String?)
-    {
-        val db= FirebaseFirestore.getInstance()
-        if (nam != null) {
-            db.collection("favorites").document(nam).delete().addOnSuccessListener {
-                Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
-                submittedlist(differ.currentList)
-            }
-                .addOnFailureListener { e->
-                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-                }
-
-        }
-
-    }
+//    fun delete(nam:String?)
+//    {
+//        val db= FirebaseFirestore.getInstance()
+//        if (nam != null) {
+//            db.collection("favorites").document(nam).delete().addOnSuccessListener {
+//                Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+//                submittedlist(differ.currentList)
+//            }
+//                .addOnFailureListener { e->
+//                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+//                }
+//
+//        }
+//
+//    }
 
 
 

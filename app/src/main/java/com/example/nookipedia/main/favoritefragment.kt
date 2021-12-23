@@ -29,6 +29,7 @@ class favoritefragment : Fragment() {
     private lateinit var binding:FragmentFavoritefragmentBinding
     private lateinit var adapter:favoritefishadapter
     private lateinit var db:FirebaseFirestore
+    private val favoriteviewmodel:firebaseviewmodel by activityViewModels()
     private var favefish=mutableListOf<favorites>()
 //https://www.youtube.com/watch?v=Ly0xwWlUpVM
     override fun onCreateView(
@@ -38,7 +39,7 @@ class favoritefragment : Fragment() {
         // Inflate the layout for this fragment
 
       binding=FragmentFavoritefragmentBinding.inflate(layoutInflater, container, false)
-    adapter= favoritefishadapter(requireActivity())
+    adapter= favoritefishadapter(requireActivity(),favoriteviewmodel)
     adapter.submittedlist(favefish)
     binding.favoriterecyclerview.adapter=adapter
     return binding.root
@@ -47,7 +48,9 @@ class favoritefragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        EventListener()
+        observer()
+        favoriteviewmodel.getfave()
+
 
 
 
@@ -56,56 +59,28 @@ class favoritefragment : Fragment() {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun EventListener()
-    {
-        db= FirebaseFirestore.getInstance()
-        db.collection("favorites").whereEqualTo("userid",Firebase.auth.currentUser!!.uid).addSnapshotListener(object:EventListener<QuerySnapshot>
+
+
+
+        fun observer()
         {
-
-            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-
-                if(error!=null)
-                {
-                    Toast.makeText(requireActivity(), error.message, Toast.LENGTH_SHORT).show()
-                    return
-                }
-
-                for(dc:DocumentChange in value?.documentChanges!!)
-                {
-                    if(dc.type==DocumentChange.Type.ADDED)
-                    {
-
-                        favefish.add(dc.document.toObject(favorites::class.java))
-                        Log.d("زوع",favefish.toString())
+            favoriteviewmodel.favoritelivedata.observe(viewLifecycleOwner,{
+                favoriteviewmodel.getfave()
+                adapter.submittedlist(it)
 
 
-                    }
-                }
-                adapter.notifyDataSetChanged()
-
-            }
-
-        })
+            })
 
 
+            favoriteviewmodel.firebaseerrordata.observe(viewLifecycleOwner,{
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+            })
 
-    }
+            favoriteviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
 
-
-    fun delete()
-    {
-        val fave= Firebase.firestore.collection("favorites")
-        val favetobedeleted=fave.whereEqualTo("crittername","Dungeness Crab")
-        try {
-            fave.document().delete()
-
+            })
         }
-        catch (e:Exception)
-        {
-            Toast.makeText(requireActivity(), "error", Toast.LENGTH_SHORT).show()
-        }
-    }
 
 
 
