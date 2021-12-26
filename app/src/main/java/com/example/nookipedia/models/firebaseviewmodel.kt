@@ -56,16 +56,20 @@ class firebaseviewmodel:ViewModel() {
     {
         viewModelScope.launch {
             try {
-               val response= firerepo.updatefave(id,note)
-                if(!response.isSuccessful)
-                {
-                    firebaseerrordata.postValue(response.result.toString())
+
+                val response=firerepo.updatefave(id,note)
+                response.addOnSuccessListener {
+                   livedatafortoasts.postValue("Updated successfully")
                 }
+                    .addOnFailureListener {
+                        firebaseerrordata.postValue(it.message)
+                    }
             }
             catch (e:Exception)
             {
                 firebaseerrordata.postValue(e.message)
             }
+
         }
     }
 
@@ -76,7 +80,7 @@ class firebaseviewmodel:ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val db= FirebaseFirestore.getInstance()
+
 
                 if(thefaves!=null)
                 {

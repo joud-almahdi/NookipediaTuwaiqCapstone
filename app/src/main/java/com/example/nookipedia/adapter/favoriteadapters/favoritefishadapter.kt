@@ -148,13 +148,10 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
             if (enterednote.isNotEmpty())
             {
                 if (id != null) {
-                    db.collection("favorites").document(id).update("favnote",enterednote).addOnSuccessListener {
-                        Toast.makeText(context, "Updated successfully", Toast.LENGTH_SHORT).show()
+                    fave.updatefave(id,enterednote)
                         submittedlist(differ.currentList)
-                    }
-                        .addOnFailureListener { e->
-                            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-                        }
+
+
                 }
             }
             else
