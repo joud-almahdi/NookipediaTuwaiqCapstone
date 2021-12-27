@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.nookipedia.R
 import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.addingbugsviewmodel
+import com.example.nookipedia.models.addingspeciesviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.squareup.picasso.Picasso
 
-class bugadapter(val viewModel: animalcrossingviewmodel) :
+class bugadapter(val viewModel: animalcrossingviewmodel,val bugdetail: addingbugsviewmodel) :
     RecyclerView.Adapter<bugadapter.bugviewmodel>() {
     val diffcallback= object: DiffUtil.ItemCallback<bugjsonItem>(){
         override fun areItemsTheSame(oldItem: bugjsonItem, newItem: bugjsonItem): Boolean {
@@ -48,6 +50,7 @@ class bugadapter(val viewModel: animalcrossingviewmodel) :
 
         holder.itemView.setOnClickListener {
            viewModel.onebuglivedata.postValue(item)
+            bugdetail.thefaves=item
             holder.itemView.findNavController().navigate(R.id.action_bugfragment_to_bugdetailfragment)
         }
 

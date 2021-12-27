@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.nookipedia.R
 import com.example.nookipedia.json.bugjson.bugjsonItem
+import com.example.nookipedia.models.addingseaviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.squareup.picasso.Picasso
 
-class seaadapter(val seaviewmodel:animalcrossingviewmodel) :
+class seaadapter(val seaviewmodel:animalcrossingviewmodel,val seadetails:addingseaviewmodel) :
     RecyclerView.Adapter<seaadapter.seaviewholder>() {
 
 
@@ -49,6 +50,7 @@ class seaadapter(val seaviewmodel:animalcrossingviewmodel) :
 
         holder.itemView.setOnClickListener {
             seaviewmodel.onesealivedata.postValue(item)
+            seadetails.thefaves=item
             holder.itemView.findNavController().navigate(R.id.action_seafragment_to_seadetailFragment)
 
         }

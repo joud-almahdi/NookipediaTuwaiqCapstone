@@ -5,6 +5,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,10 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.FragmentDetailfragmentBinding
+import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.addingspeciesviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
+import com.example.nookipedia.models.firebaseviewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,7 +28,9 @@ import com.squareup.picasso.Picasso
 class detailfragment : Fragment() {
     private lateinit var binding: FragmentDetailfragmentBinding
     private val detailviewmodel:animalcrossingviewmodel by activityViewModels()
+    private val fishviewmodel:addingspeciesviewmodel by activityViewModels()
     val auth: FirebaseAuth = Firebase.auth
+   private lateinit var thefaves : fishjsonItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,39 +64,7 @@ class detailfragment : Fragment() {
             binding.shadowsizeindetailview.text="Shadow Size:........${fish.shadowSize}"
             binding.cjprice.text="CJ's price:........${fish.sellCj}  Bells"
             Picasso.get().load(fish.renderUrl).into(binding.itemimageindetailview)
-
-            binding.favoriteindetailview.setOnClickListener { click->
-                val db=FirebaseFirestore.getInstance()
-
-                db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
-                    if(it.count()>0)
-                    {
-                        Toast.makeText(requireActivity(), "This critter already exists", Toast.LENGTH_SHORT).show()
-                    }
-                    else
-                    {
-                        val fave:MutableMap<String,Any> = hashMapOf(
-                            "userid" to auth.currentUser!!.uid,
-                            "crittername" to fish.name,
-                        "imageurl" to fish.imageUrl,
-                            "favnote" to "",
-                        "favid" to fish.number.toString()
-                        )
-                        val id=fish.number.toString()
-
-                        db.collection("favorites").document(id)
-                            .set(fave)
-                            .addOnSuccessListener {
-                                Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()}
-                            .addOnFailureListener { e ->
-                                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
-                    }
-
-
-                }
-
-
-            }
+                thefaves=fish
             binding.shareimageview.setOnClickListener {
                 val intent=Intent(Intent.ACTION_SEND)
                 intent.setType("text/plain")
@@ -103,8 +77,66 @@ class detailfragment : Fragment() {
 
 
 
+        binding.favoriteindetailview.setOnClickListener { click->
+
+            val id=thefaves.number.toString()
+            fishviewmodel.checknewfavebeforeadd(thefaves.name,id)
+            Log.d("tag",thefaves.name)
+
+        }
+
+
+        fishviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+
+        })
+
+
+
+       fishviewmodel.firebaseerrordata.observe(viewLifecycleOwner,{
+            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+
+
+        })
+
+
+
+
     }
 
 
 
 }
+
+
+
+
+
+//val db=FirebaseFirestore.getInstance()
+//
+//db.collection("favorites").whereEqualTo("crittername",it.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
+//    if(it.count()>0)
+//    {
+//        Toast.makeText(requireActivity(), "This critter already exists", Toast.LENGTH_SHORT).show()
+//    }
+//    else
+//    {
+//        val fave:MutableMap<String,Any> = hashMapOf(
+//            "userid" to auth.currentUser!!.uid,
+//            "crittername" to fish.name,
+//            "imageurl" to fish.imageUrl,
+//            "favnote" to "",
+//            "favid" to fish.number.toString()
+//        )
+//
+//
+//        db.collection("favorites").document(id)
+//            .set(fave)
+//            .addOnSuccessListener {
+//                Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()}
+//            .addOnFailureListener { e ->
+//                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
+//    }
+//
+//
+//}

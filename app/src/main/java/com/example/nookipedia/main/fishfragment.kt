@@ -25,6 +25,7 @@ import com.example.nookipedia.apis.animalcrossingapi
 import com.example.nookipedia.databinding.ActivityMainBinding
 import com.example.nookipedia.databinding.FragmentFishfragmentBinding
 import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.addingspeciesviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,6 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class fishfragment : Fragment() {
     private val fishviewmodel:animalcrossingviewmodel by activityViewModels()
+    private val forfishdetail:addingspeciesviewmodel by activityViewModels()
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var adapter:fishadapter
     lateinit var sharededitor: SharedPreferences.Editor
@@ -63,7 +65,7 @@ class fishfragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-         adapter=fishadapter(fishviewmodel)
+         adapter=fishadapter(fishviewmodel,forfishdetail)
         binding.fishrecyclerview.adapter=adapter
         observe()
         fishviewmodel.getfish()

@@ -16,6 +16,7 @@ import com.example.nookipedia.apis.animalcrossingapi
 import com.example.nookipedia.databinding.FragmentFishfragmentBinding
 import com.example.nookipedia.databinding.FragmentSeafragmentBinding
 import com.example.nookipedia.json.seajson.seajsonItem
+import com.example.nookipedia.models.addingseaviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +31,7 @@ class seafragment : Fragment() {
     private lateinit var binding: FragmentSeafragmentBinding
     private lateinit var adapter:seaadapter
     private val seaviewmodel:animalcrossingviewmodel by activityViewModels()
+    private val seadetailviewmodel:addingseaviewmodel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,7 +43,7 @@ class seafragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         adapter= seaadapter(seaviewmodel)
+         adapter= seaadapter(seaviewmodel,seadetailviewmodel)
         binding.searecyclerview.adapter=adapter
             observer()
         seaviewmodel.getsea()

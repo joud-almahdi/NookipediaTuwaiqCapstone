@@ -12,10 +12,11 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.example.nookipedia.R
 import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.addingspeciesviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.squareup.picasso.Picasso
 
-class fishadapter(val viewModel: animalcrossingviewmodel) :
+class fishadapter(val viewModel: animalcrossingviewmodel,val fishdetail:addingspeciesviewmodel) :
     RecyclerView.Adapter<fishadapter.fishviewvholder>() {
     val diffcallback= object: DiffUtil.ItemCallback<fishjsonItem>()
     {
@@ -47,6 +48,8 @@ class fishadapter(val viewModel: animalcrossingviewmodel) :
 
         holder.itemView.setOnClickListener {
             viewModel.onefishlivedata.postValue(item)
+            fishdetail.thefaves=item
+
             holder.itemView.findNavController().navigate(R.id.action_fishfragment_to_detailfragment)
         }
 

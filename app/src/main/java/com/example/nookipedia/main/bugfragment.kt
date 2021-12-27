@@ -17,6 +17,7 @@ import com.example.nookipedia.databinding.FragmentBugfragmentBinding
 import com.example.nookipedia.databinding.FragmentFishfragmentBinding
 import com.example.nookipedia.json.bugjson.bugjsonItem
 import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.addingbugsviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +30,7 @@ class bugfragment : Fragment() {
 
     var bugarray=ArrayList<bugjsonItem>()
     private val bugviewmodel: animalcrossingviewmodel by activityViewModels()
+    private val addingbugviewmodel: addingbugsviewmodel by activityViewModels()
     private lateinit var binding: FragmentBugfragmentBinding
     private lateinit var adapter :bugadapter
 
@@ -43,7 +45,7 @@ class bugfragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= bugadapter(bugviewmodel)
+        adapter= bugadapter(bugviewmodel,addingbugviewmodel)
         binding.bugrecyclerview.adapter=adapter
         observers()
         bugviewmodel.getbug()
