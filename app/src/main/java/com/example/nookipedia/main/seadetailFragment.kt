@@ -13,6 +13,10 @@ import androidx.fragment.app.activityViewModels
 import com.example.nookipedia.R
 import com.example.nookipedia.adapterimport.seaadapter
 import com.example.nookipedia.databinding.FragmentSeadetailBinding
+import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.json.seajson.seajsonItem
+import com.example.nookipedia.models.addingbugsviewmodel
+import com.example.nookipedia.models.addingseaviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -25,7 +29,9 @@ class seadetailFragment : Fragment() {
 
     private lateinit var binding:FragmentSeadetailBinding
     private val seaviewmodel:animalcrossingviewmodel by activityViewModels()
+    private val addseaviewmodel: addingseaviewmodel by activityViewModels()
     val auth: FirebaseAuth = Firebase.auth
+    private lateinit var thefaves : seajsonItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,38 +62,7 @@ class seadetailFragment : Fragment() {
             binding.nookpriceinseadetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
 
 
-            binding.favoriteinseadetailview.setOnClickListener { click->
-                val db=FirebaseFirestore.getInstance()
-
-
-
-                db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
-                    if(it.count()>0)
-                    {
-                        Toast.makeText(requireActivity(), "This critter already exists", Toast.LENGTH_SHORT).show()
-                    }
-                    else
-                    {
-                        val fave:MutableMap<String,Any> = hashMapOf(
-                            "userid" to auth.currentUser!!.uid,
-                            "crittername" to fish.name,
-                            "imageurl" to fish.imageUrl,
-                            "favnote" to "",
-                            "favid" to fish.number.toString()
-                        )
-
-
-                        db.collection("favorites").document(fish.number.toString())
-                            .set(fave)
-                            .addOnSuccessListener {
-                                Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()}
-                            .addOnFailureListener { e ->
-                                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
-                    }
-
-
-                }
-            }
+           thefaves=fish
 
             binding.shareimageinseaview.setOnClickListener {
                 val intent= Intent(Intent.ACTION_SEND)
@@ -96,7 +71,47 @@ class seadetailFragment : Fragment() {
                 startActivity(Intent.createChooser(intent, "Share link using"))
             }
         })
+
+
+
+        binding.favoriteinseadetailview.setOnClickListener { click->
+           addseaviewmodel.checknewfavebeforeadd(thefaves.name,thefaves.number.toString())
+        }
+
+
+
+
+
+
+        addseaviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                addseaviewmodel.livedatafortoasts.postValue(null)
+            }
+
+        })
+
+
+
+        addseaviewmodel.firebaseerrordata.observe(viewLifecycleOwner,{
+
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                addseaviewmodel.firebaseerrordata.postValue(null)
+            }
+
+
+        })
+
+
+
+
+
+
     }
+
+
+
 
 
 

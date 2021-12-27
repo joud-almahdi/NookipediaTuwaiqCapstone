@@ -87,14 +87,21 @@ class detailfragment : Fragment() {
 
 
         fishviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
-            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                fishviewmodel.livedatafortoasts.postValue(null)
+            }
 
         })
 
 
 
        fishviewmodel.firebaseerrordata.observe(viewLifecycleOwner,{
-            Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+
+           it?.let {
+               Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+               fishviewmodel.firebaseerrordata.postValue(null)
+           }
 
 
         })

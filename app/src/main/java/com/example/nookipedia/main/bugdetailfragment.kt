@@ -12,6 +12,10 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.FragmentBugdetailfragmentBinding
+import com.example.nookipedia.json.bugjson.bugjsonItem
+import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.addingbugsviewmodel
+import com.example.nookipedia.models.addingspeciesviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -23,6 +27,8 @@ import com.squareup.picasso.Picasso
 class bugdetailfragment : Fragment() {
 private lateinit var binding:FragmentBugdetailfragmentBinding
 private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
+    private val addbugviewmodel: addingbugsviewmodel by activityViewModels()
+    private lateinit var thefaves : bugjsonItem
     val auth: FirebaseAuth = Firebase.auth
 
     override fun onCreateView(
@@ -55,35 +61,7 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
             binding.nookpriceinbugdetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
             binding.nookpriceinbugdetailview.text="Flick's price:........${fish.sellFlick}  Bells"
 
-            binding.favoriteinbugdetailview.setOnClickListener { click->
-                val db=FirebaseFirestore.getInstance()
-
-
-
-                db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get().addOnSuccessListener {
-                    if(it.count()>0)
-                    {
-                        Toast.makeText(requireActivity(), "This critter already exists", Toast.LENGTH_SHORT).show()
-                    }
-                    else
-                    {
-                        val fave:MutableMap<String,Any> = hashMapOf(
-                            "userid" to auth.currentUser!!.uid,
-                            "crittername" to fish.name,
-                            "imageurl" to fish.imageUrl,
-                            "favnote" to "",
-                            "favid" to fish.number.toString()
-                        )
-
-                        db.collection("favorites").document(fish.number.toString())
-                            .set(fave)
-                            .addOnSuccessListener {
-                                Toast.makeText(requireActivity(), "Success", Toast.LENGTH_SHORT).show()}
-                            .addOnFailureListener { e ->
-                                Toast.makeText(requireActivity(), e.message, Toast.LENGTH_SHORT).show() }
-                    }
-                }
-            }
+            thefaves=fish
 
             binding.shareimageinbugview.setOnClickListener {
                 val intent= Intent(Intent.ACTION_SEND)
@@ -94,5 +72,32 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
 
 
         })
+
+
+        binding.favoriteinbugdetailview.setOnClickListener { click->
+            addbugviewmodel.checknewfavebeforeadd(thefaves.name,thefaves.number.toString())
+        }
+
+        addbugviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                addbugviewmodel.livedatafortoasts.postValue(null)
+            }
+
+        })
+
+
+
+        addbugviewmodel.firebaseerrordata.observe(viewLifecycleOwner,{
+
+            it?.let {
+                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                addbugviewmodel.firebaseerrordata.postValue(null)
+            }
+
+
+        })
+
+
     }
 }

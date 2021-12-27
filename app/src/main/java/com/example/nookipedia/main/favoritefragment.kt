@@ -73,11 +73,17 @@ class favoritefragment : Fragment() {
 
 
             favoriteviewmodel.firebaseerrordata.observe(viewLifecycleOwner,{
-                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+           it?.let {
+               Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+               favoriteviewmodel.firebaseerrordata.postValue(null)
+           }
             })
 
             favoriteviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
-                Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+               it?.let {
+                   Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
+                   favoriteviewmodel.livedatafortoasts.postValue(null)
+               }
 
             })
         }

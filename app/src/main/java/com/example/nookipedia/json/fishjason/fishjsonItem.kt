@@ -11,7 +11,7 @@ data class fishjsonItem(
     @SerializedName("location")
     val location: String,
     @SerializedName("name")
-    val name: String,
+    var name: String,
     @SerializedName("north")
     val north: North,
     @SerializedName("number")

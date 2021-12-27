@@ -42,7 +42,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="TextView" />
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="TextView"
+                android:textAlignment="center" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

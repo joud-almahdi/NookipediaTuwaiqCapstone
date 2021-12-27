@@ -71,13 +71,9 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         }
 
         holder.delete.setOnClickListener {
-
-                fave.deletefave(item.favid!!)
+            fave.deletefave(item.favid!!)
             newlist.addAll(differ.currentList)
             newlist.removeAt(position)
-
-
-
             submittedlist(newlist)
 
         }
@@ -165,6 +161,7 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
         builder.show()
     }
+
 
 
 

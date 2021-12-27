@@ -3,6 +3,7 @@ package com.example.nookipedia.main
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -25,7 +26,7 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         shared=getSharedPreferences("Auth", Context.MODE_PRIVATE)
         sharededitor=shared.edit()
 
