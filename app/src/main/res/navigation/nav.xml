@@ -83,5 +83,9 @@
         android:id="@+id/favoritefragment"
         android:name="com.example.nookipedia.main.favoritefragment"
         android:label="@string/favorite"
-        tools:layout="@layout/fragment_favoritefragment" />
+        tools:layout="@layout/fragment_favoritefragment" >
+        <action
+            android:id="@+id/action_favoritefragment_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
 </navigation>

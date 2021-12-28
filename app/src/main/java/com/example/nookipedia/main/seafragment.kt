@@ -122,21 +122,12 @@ class seafragment : Fragment() {
                 startActivity(Intent(requireActivity(),loginactivity::class.java))
                 requireActivity().finish()
             }
-            R.id.profile->findNavController().navigate(R.id.action_bugfragment_to_profile)
-            R.id.favorite->findNavController().navigate(R.id.action_bugfragment_to_favoritefragment)
+            R.id.profile->findNavController().navigate(R.id.action_seafragment_to_profile)
+            R.id.favorite->findNavController().navigate(R.id.action_seafragment_to_favoritefragment)
         }
         return super.onOptionsItemSelected(item)
 
     }
-
-
-
-
-
-
-
-
-
 
 
 
