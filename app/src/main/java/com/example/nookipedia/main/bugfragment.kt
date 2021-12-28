@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -13,12 +14,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.nookipedia.R
 import com.example.nookipedia.adapterimport.bugadapter
-import com.example.nookipedia.adapterimport.fishadapter
+
 import com.example.nookipedia.apis.animalcrossingapi
 import com.example.nookipedia.databinding.FragmentBugfragmentBinding
-import com.example.nookipedia.databinding.FragmentFishfragmentBinding
+
 import com.example.nookipedia.json.bugjson.bugjsonItem
-import com.example.nookipedia.json.fishjason.fishjsonItem
+
 import com.example.nookipedia.models.addingbugsviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
 import retrofit2.Call
@@ -36,6 +37,7 @@ class bugfragment : Fragment() {
     private lateinit var binding: FragmentBugfragmentBinding
     private lateinit var adapter :bugadapter
     lateinit var sharededitor: SharedPreferences.Editor
+    var searchbug= mutableListOf<bugjsonItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +46,7 @@ class bugfragment : Fragment() {
         // Inflate the layout for this fragment
         shared=requireActivity().getSharedPreferences("Auth", Context.MODE_PRIVATE)
         sharededitor= shared.edit()
+        setHasOptionsMenu(true)
         binding= FragmentBugfragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -62,10 +65,52 @@ class bugfragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         requireActivity().menuInflater.inflate(R.menu.uppermenu,menu)
-        val search=menu.findItem(R.id.app_bar_search)
-        val logout=menu.findItem(R.id.logout)
-        val favorite=menu.findItem(R.id.favorite)
-        val profile=menu.findItem(R.id.profile)
+
+
+        val searchitem=menu.findItem(R.id.app_bar_search)
+
+
+        val searchView=searchitem.actionView as SearchView
+
+
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.submitbug(
+
+                    searchbug.filter { it.name.lowercase().contains(query!!.lowercase()) }
+                )
+
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                adapter.submitbug(
+
+                    searchbug.filter { it.name.lowercase().contains(newText!!.lowercase()) }
+                )
+                return true
+            }
+
+
+        })
+
+        searchitem.setOnActionExpandListener(object:MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+
+                adapter.submitbug(searchbug)
+                return true
+
+            }
+
+        })
+
 
 
 
@@ -85,8 +130,8 @@ class bugfragment : Fragment() {
                 startActivity(Intent(requireActivity(),loginactivity::class.java))
                 requireActivity().finish()
             }
-            R.id.profile->findNavController().navigate(R.id.action_fishfragment_to_profile)
-            R.id.favorite->findNavController().navigate(R.id.action_fishfragment_to_favoritefragment)
+            R.id.profile->findNavController().navigate(R.id.action_bugfragment_to_profile)
+            R.id.favorite->findNavController().navigate(R.id.action_bugfragment_to_favoritefragment)
         }
         return super.onOptionsItemSelected(item)
 
@@ -94,8 +139,10 @@ class bugfragment : Fragment() {
     fun observers()
     {
         bugviewmodel.buglivedata.observe(viewLifecycleOwner,{
-
+            binding.bugrecyclerview.animate().alpha(0F)
             adapter.submitbug(it)
+            searchbug=it as MutableList<bugjsonItem>
+            binding.bugrecyclerview.animate().alpha(1F)
         })
 
 

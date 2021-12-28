@@ -47,6 +47,12 @@
             android:id="@+id/action_bugfragment_to_bugdetailfragment"
             app:destination="@id/bugdetailfragment"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_bugfragment_to_favoritefragment"
+            app:destination="@id/favoritefragment" />
+        <action
+            android:id="@+id/action_bugfragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/seafragment"
@@ -57,6 +63,12 @@
             android:id="@+id/action_seafragment_to_seadetailFragment"
             app:destination="@id/seadetailFragment"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_seafragment_to_favoritefragment"
+            app:destination="@id/favoritefragment" />
+        <action
+            android:id="@+id/action_seafragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/bugdetailfragment"
