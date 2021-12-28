@@ -58,7 +58,6 @@ class fishfragment : Fragment() {
         binding= FragmentFishfragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
 
-
     }
 
 

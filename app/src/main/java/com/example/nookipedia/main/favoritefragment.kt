@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -56,6 +57,7 @@ class favoritefragment : Fragment() {
 
 
 
+
     }
 
 
@@ -65,8 +67,20 @@ class favoritefragment : Fragment() {
         fun observer()
         {
             favoriteviewmodel.favoritelivedata.observe(viewLifecycleOwner,{
-                favoriteviewmodel.getfave()
-                adapter.submittedlist(it)
+
+
+                if(it.isEmpty())
+                {
+                    binding.favoriterecyclerview.visibility=INVISIBLE
+                    binding.empty.visibility= VISIBLE
+                }
+                else
+                {
+                    binding.favoriterecyclerview.visibility= VISIBLE
+                    binding.empty.visibility= INVISIBLE
+                    favoriteviewmodel.getfave()
+                    adapter.submittedlist(it)
+                }
 
 
             })
