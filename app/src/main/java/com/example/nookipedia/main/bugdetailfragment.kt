@@ -54,14 +54,29 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
     @SuppressLint("SetTextI18n")
     fun observers()
     {
+        val db=FirebaseFirestore.getInstance()
         bugviewmodel.onebuglivedata.observe(viewLifecycleOwner,{fish->
             binding.catchingphraseinbugdetailview.text=fish.catchphrases[0]
             Picasso.get().load(fish.renderUrl).into(binding.itemimageinbugdetailview)
             binding.locationinbugdetailview.text="Location:........${fish.location}"
             binding.nookpriceinbugdetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
-            binding.nookpriceinbugdetailview.text="Flick's price:........${fish.sellFlick}  Bells"
+            binding.flickprice.text="Flick's price:........${fish.sellFlick}  Bells"
 
             thefaves=fish
+
+
+            db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get()
+                .addOnSuccessListener {
+                    if(it.count()>0)
+                    {
+                        binding.favoriteinbugdetailview.setImageResource(R.drawable.whitecoin)
+                    }
+                    else
+                    {
+                        binding.favoriteinbugdetailview.setImageResource(R.drawable.coin)
+                    }
+                }
+
 
             binding.shareimageinbugview.setOnClickListener {
                 val intent= Intent(Intent.ACTION_SEND)
@@ -76,6 +91,7 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
 
         binding.favoriteinbugdetailview.setOnClickListener { click->
             addbugviewmodel.checknewfavebeforeadd(thefaves.name,thefaves.number.toString())
+            binding.favoriteinbugdetailview.setImageResource(R.drawable.whitecoin)
         }
 
         addbugviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{

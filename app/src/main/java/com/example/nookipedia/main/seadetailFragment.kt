@@ -54,6 +54,7 @@ class seadetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     fun observers()
     {
+        val db=FirebaseFirestore.getInstance()
         seaviewmodel.onesealivedata.observe(viewLifecycleOwner,{fish->
             binding.catchingphraseinseadetailview.text=fish.catchphrases[0]
             Picasso.get().load(fish.renderUrl).into(binding.itemimageinseadetailview)
@@ -63,6 +64,20 @@ class seadetailFragment : Fragment() {
 
 
            thefaves=fish
+
+
+
+            db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get()
+                .addOnSuccessListener {
+                    if(it.count()>0)
+                    {
+                        binding.favoriteinseadetailview.setImageResource(R.drawable.whitecoin)
+                    }
+                    else
+                    {
+                        binding.favoriteinseadetailview.setImageResource(R.drawable.coin)
+                    }
+                }
 
             binding.shareimageinseaview.setOnClickListener {
                 val intent= Intent(Intent.ACTION_SEND)
@@ -76,6 +91,7 @@ class seadetailFragment : Fragment() {
 
         binding.favoriteinseadetailview.setOnClickListener { click->
            addseaviewmodel.checknewfavebeforeadd(thefaves.name,thefaves.number.toString())
+            binding.favoriteinseadetailview.setImageResource(R.drawable.whitecoin)
         }
 
 

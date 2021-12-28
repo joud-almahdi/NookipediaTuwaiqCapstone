@@ -40,6 +40,7 @@ class fishfragment : Fragment() {
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var adapter:fishadapter
     lateinit var sharededitor: SharedPreferences.Editor
+    val searchfish= listOf<fishjsonItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -79,6 +80,41 @@ class fishfragment : Fragment() {
         val logout=menu.findItem(R.id.logout)
         val favorite=menu.findItem(R.id.favorite)
         val profile=menu.findItem(R.id.profile)
+
+        val searchview=search.actionView as SearchView
+
+        searchview.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+               adapter.submitfish(searchfish.filter {
+                    it.name.lowercase().contains(query!!.lowercase())
+               })
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.submitfish(searchfish.filter {
+                    it.name.lowercase().contains(newText!!.lowercase())
+                })
+                return true
+            }
+
+        })
+
+        search.setOnActionExpandListener(object:MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+
+                adapter.submitfish(searchfish)
+                return true
+
+            }
+
+        })
+
+
 
 
 

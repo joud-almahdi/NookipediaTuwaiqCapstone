@@ -12,13 +12,16 @@
         tools:layout="@layout/fragment_fishfragment">
         <action
             android:id="@+id/action_fishfragment_to_detailfragment"
-            app:destination="@id/detailfragment" />
+            app:destination="@id/detailfragment"
+            app:enterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_fishfragment_to_profile"
-            app:destination="@id/profile" />
+            app:destination="@id/profile"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
         <action
             android:id="@+id/action_fishfragment_to_favoritefragment"
-            app:destination="@id/favoritefragment" />
+            app:destination="@id/favoritefragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/detailfragment"
@@ -27,7 +30,8 @@
         tools:layout="@layout/fragment_detailfragment">
         <action
             android:id="@+id/action_detailfragment_to_fishfragment"
-            app:destination="@id/fishfragment" />
+            app:destination="@id/fishfragment"
+            app:enterAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -41,7 +45,8 @@
         tools:layout="@layout/fragment_bugfragment">
         <action
             android:id="@+id/action_bugfragment_to_bugdetailfragment"
-            app:destination="@id/bugdetailfragment" />
+            app:destination="@id/bugdetailfragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/seafragment"
@@ -50,7 +55,8 @@
         tools:layout="@layout/fragment_seafragment" >
         <action
             android:id="@+id/action_seafragment_to_seadetailFragment"
-            app:destination="@id/seadetailFragment" />
+            app:destination="@id/seadetailFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/bugdetailfragment"

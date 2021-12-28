@@ -8,16 +8,12 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.ActivityRegisteractivityBinding
-import com.example.nookipedia.repositories.authenticationviewmodel
 import com.example.nookipedia.unittesting.registerunittesting
 //import com.example.nookipedia.databinding.FragmentRegisterfragmentBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -43,27 +39,21 @@ class registeractivity : AppCompatActivity() {
             finish()
         }
 
-
-    }
-
-
-
-
-    fun observers() {
-
-        val userobserver=Observer<String>{
-            sharededitor.putBoolean("status",true)
-            sharededitor.putString("uid",user!!.uid)
-            sharededitor.putString("email",user!!.email)
-            sharededitor.commit()
-        }
-
         binding.registerbutton.setOnClickListener {
             var enteredemail:String=binding.registeremailedittext.text.toString()
             var enteredpassword:String=binding.registerpasswordedittext.text.toString()
             if(validator.emailisvalid(enteredemail))
             {
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(enteredemail,enteredpassword)
+                    .addOnCompleteListener {
+                        if(it.isSuccessful)
+                        {
 
+
+                            sharededitor.putBoolean("status",true)
+                            sharededitor.putString("uid",user!!.uid)
+                            sharededitor.putString("email",user!!.email)
+                            sharededitor.commit()
                             Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
 
                             val intent=Intent(this,MainActivity::class.java)
@@ -72,7 +62,12 @@ class registeractivity : AppCompatActivity() {
                             finish()
 
 
+                        }
+                        else
+                            Toast.makeText(this, it.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
 
+
+                    }
             }
             else
             {
@@ -81,9 +76,8 @@ class registeractivity : AppCompatActivity() {
 
 
         }
-
-
     }
+
 
 
 

@@ -57,6 +57,8 @@ class detailfragment : Fragment() {
     @SuppressLint("SetTextI18n")
     fun observers()
     {
+        val db=FirebaseFirestore.getInstance()
+
         detailviewmodel.onefishlivedata.observe(viewLifecycleOwner,{fish->
             binding.catchingphraseindetailview.text=fish.catchphrases[0]
             binding.locationindetailview.text="Location:........${fish.location}"
@@ -65,6 +67,21 @@ class detailfragment : Fragment() {
             binding.cjprice.text="CJ's price:........${fish.sellCj}  Bells"
             Picasso.get().load(fish.renderUrl).into(binding.itemimageindetailview)
                 thefaves=fish
+
+
+            db.collection("favorites").whereEqualTo("crittername",fish.name).whereEqualTo("userid",auth.currentUser!!.uid).get()
+                .addOnSuccessListener {
+                    if(it.count()>0)
+                    {
+                        binding.favoriteindetailview.setImageResource(R.drawable.whitecoin)
+                    }
+                    else
+                    {
+                        binding.favoriteindetailview.setImageResource(R.drawable.coin)
+                    }
+                }
+
+
             binding.shareimageview.setOnClickListener {
                 val intent=Intent(Intent.ACTION_SEND)
                 intent.setType("text/plain")
@@ -81,6 +98,7 @@ class detailfragment : Fragment() {
 
             val id=thefaves.number.toString()
             fishviewmodel.checknewfavebeforeadd(thefaves.name,id)
+            binding.favoriteindetailview.setImageResource(R.drawable.whitecoin)
             Log.d("tag",thefaves.name)
 
         }

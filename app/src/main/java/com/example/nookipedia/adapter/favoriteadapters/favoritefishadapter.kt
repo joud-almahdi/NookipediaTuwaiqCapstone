@@ -5,6 +5,7 @@ package com.example.nookipedia.adapter.favoriteadaptersimport
  import android.content.Context
  import android.content.DialogInterface
  import android.text.InputType
+ import android.util.Log
  import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ import android.view.ViewGroup
  import com.google.firebase.firestore.ktx.firestore
  import com.google.firebase.ktx.Firebase
  import com.squareup.picasso.Picasso
+ import java.lang.IndexOutOfBoundsException
 
 class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
@@ -71,10 +73,22 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         }
 
         holder.delete.setOnClickListener {
-            fave.deletefave(item.favid!!)
-            newlist.addAll(differ.currentList)
-            newlist.removeAt(position)
-            submittedlist(newlist)
+                    try {
+                        fave.deletefave(item.favid!!)
+                        newlist.addAll(differ.currentList)
+                        newlist.removeAt(position)
+                        submittedlist(newlist)
+                    }
+                    catch (e:IndexOutOfBoundsException)
+                    {
+                        Log.d("fastdelete","fastdelete")
+                    }
+
+
+
+
+
+
 
         }
 
