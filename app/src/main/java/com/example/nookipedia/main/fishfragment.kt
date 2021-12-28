@@ -40,10 +40,14 @@ class fishfragment : Fragment() {
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var adapter:fishadapter
     lateinit var sharededitor: SharedPreferences.Editor
-    val searchfish= listOf<fishjsonItem>()
+    var searchfish= mutableListOf<fishjsonItem>()
+
+    @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        shared=requireActivity().getSharedPreferences("Auth",MODE_PRIVATE)
+        sharededitor= shared.edit()
     }
 
 
@@ -52,10 +56,7 @@ class fishfragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        shared=requireActivity().getSharedPreferences("Auth",MODE_PRIVATE)
-        sharededitor= shared.edit()
-        //Toast.makeText(requireActivity(), shared.getString("uid","0"), Toast.LENGTH_SHORT).show()
+
         binding= FragmentFishfragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
 
@@ -73,34 +74,43 @@ class fishfragment : Fragment() {
 
     }
 
+
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+
         requireActivity().menuInflater.inflate(R.menu.uppermenu,menu)
-        val search=menu.findItem(R.id.app_bar_search)
-        val logout=menu.findItem(R.id.logout)
-        val favorite=menu.findItem(R.id.favorite)
-        val profile=menu.findItem(R.id.profile)
 
-        val searchview=search.actionView as SearchView
+        val searchitem=menu.findItem(R.id.app_bar_search)
 
-        searchview.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+
+        val searchView=searchitem.actionView as SearchView
+
+
+
+        searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-               adapter.submitfish(searchfish.filter {
-                    it.name.lowercase().contains(query!!.lowercase())
-               })
+                adapter.submitfish(
+
+                    searchfish.filter { it.name.lowercase().contains(query!!.lowercase()) }
+                )
+
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.submitfish(searchfish.filter {
-                    it.name.lowercase().contains(newText!!.lowercase())
-                })
+
+              adapter.submitfish(
+
+                    searchfish.filter { it.name.lowercase().contains(newText!!.lowercase()) }
+                )
                 return true
             }
 
+
         })
 
-        search.setOnActionExpandListener(object:MenuItem.OnActionExpandListener{
+        searchitem.setOnActionExpandListener(object:MenuItem.OnActionExpandListener{
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 return true
             }
@@ -113,39 +123,17 @@ class fishfragment : Fragment() {
             }
 
         })
-
-
-
-
-
-
-
-
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when(item.itemId)
-        {
-            R.id.logout->{ sharededitor.putBoolean("status",false)
-                sharededitor.commit()
-                startActivity(Intent(requireActivity(),loginactivity::class.java))
-                    requireActivity().finish()
-            }
-            R.id.profile->findNavController().navigate(R.id.action_fishfragment_to_profile)
-            R.id.favorite->findNavController().navigate(R.id.action_fishfragment_to_favoritefragment)
-        }
-        return super.onOptionsItemSelected(item)
-
     }
 
 
     fun observe()
     {
         fishviewmodel.fishlivedata.observe(viewLifecycleOwner,{
-
+            binding.fishrecyclerview.animate().alpha(0F)
             adapter.submitfish(it)
+            searchfish=it as MutableList<fishjsonItem>
+            binding.fishrecyclerview.animate().alpha(1F)
+
 
         })
 
