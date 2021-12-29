@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -65,7 +67,7 @@ class fishfragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.progressBar2.visibility=VISIBLE
          adapter=fishadapter(fishviewmodel,forfishdetail)
         binding.fishrecyclerview.adapter=adapter
         observe()
@@ -147,6 +149,7 @@ class fishfragment : Fragment() {
         fishviewmodel.fishlivedata.observe(viewLifecycleOwner,{
             binding.fishrecyclerview.animate().alpha(0F)
             adapter.submitfish(it)
+            binding.progressBar2.visibility= INVISIBLE
             searchfish=it as MutableList<fishjsonItem>
             binding.fishrecyclerview.animate().alpha(1F)
 

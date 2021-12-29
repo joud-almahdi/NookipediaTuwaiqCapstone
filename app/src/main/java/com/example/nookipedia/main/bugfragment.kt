@@ -53,6 +53,7 @@ class bugfragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.visibility=View.VISIBLE
         adapter= bugadapter(bugviewmodel,addingbugviewmodel)
         binding.bugrecyclerview.adapter=adapter
         observers()
@@ -141,6 +142,7 @@ class bugfragment : Fragment() {
         bugviewmodel.buglivedata.observe(viewLifecycleOwner,{
             binding.bugrecyclerview.animate().alpha(0F)
             adapter.submitbug(it)
+            binding.progressBar.visibility=View.INVISIBLE
             searchbug=it as MutableList<bugjsonItem>
             binding.bugrecyclerview.animate().alpha(1F)
         })

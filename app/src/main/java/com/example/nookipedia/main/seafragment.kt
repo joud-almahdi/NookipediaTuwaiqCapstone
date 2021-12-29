@@ -47,6 +47,7 @@ class seafragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar3.visibility=View.VISIBLE
          adapter= seaadapter(seaviewmodel,seadetailviewmodel)
         binding.searecyclerview.adapter=adapter
             observer()
@@ -137,6 +138,7 @@ class seafragment : Fragment() {
         seaviewmodel.sealivedata.observe(viewLifecycleOwner,{
             binding.searecyclerview.animate().alpha(0F)
             adapter.submitsea(it)
+            binding.progressBar3.visibility=View.INVISIBLE
             searchsea=it as MutableList<seajsonItem>
             binding.searecyclerview.animate().alpha(1F)
         })
