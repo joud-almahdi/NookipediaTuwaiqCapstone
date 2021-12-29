@@ -3,7 +3,7 @@
     android:shape="rectangle"
     >
 
-    <solid android:color="#F5F6E3"/>
+    <solid android:color="@color/innercardcolor"/>
 
     <padding
         android:bottom="5dp"

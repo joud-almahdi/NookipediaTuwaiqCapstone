@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/outsidecolor">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bugcardView"
@@ -14,13 +14,10 @@
         android:layout_margin="20dp"
         android:foregroundGravity="center"
         android:padding="20dp"
+        app:cardBackgroundColor="@color/innercardcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/Yellow"
-        >
-
-
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -48,7 +45,6 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 
     <LinearLayout
@@ -134,7 +130,6 @@
         </ScrollView>
 
     </LinearLayout>
-
 
 
     <ImageView
