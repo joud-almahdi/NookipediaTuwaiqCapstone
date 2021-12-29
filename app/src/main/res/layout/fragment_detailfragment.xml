@@ -18,6 +18,7 @@
         android:foregroundGravity="center"
         android:padding="20dp"
         app:cardBackgroundColor="@color/Yellow"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
