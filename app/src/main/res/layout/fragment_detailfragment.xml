@@ -56,7 +56,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -65,85 +64,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fadingEdge="vertical"
-            android:fillViewport="false">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/favoriteindetailview"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/coin" />
 
-                    <ImageView
-                        android:id="@+id/favoriteindetailview"
-                        android:layout_width="34dp"
-                        android:layout_height="34dp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/coin" />
-
-                    <ImageView
-                        android:id="@+id/shareimageview"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        app:srcCompat="@drawable/giftbox" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/locationindetailview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="28dp"
-                    android:background="@drawable/profiledatashow"
-                    android:fontFamily="@font/animalcrossingfont"
-                    android:text="@string/location"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/shadowsizeindetailview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="32dp"
-                    android:background="@drawable/profiledatashow"
-                    android:fontFamily="@font/animalcrossingfont"
-                    android:text="@string/shadowsize"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/nookpriceindetailview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="21dp"
-                    android:background="@drawable/profiledatashow"
-                    android:fontFamily="@font/animalcrossingfont"
-                    android:text="@string/priceatnook"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:id="@+id/cjprice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/profiledatashow"
-                    android:fontFamily="@font/animalcrossingfont"
-                    android:text="@string/cjprice"
-                    android:textAlignment="center" />
-
+                <ImageView
+                    android:id="@+id/shareimageview"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/giftbox" />
             </LinearLayout>
-        </ScrollView>
+
+            <TextView
+                android:id="@+id/locationindetailview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/location"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/shadowsizeindetailview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/shadowsize"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/nookpriceindetailview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/priceatnook"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/cjprice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/cjprice"
+                android:textAlignment="center" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -151,7 +139,7 @@
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/bigblathers"
         app:layout_constraintBottom_toBottomOf="parent"
