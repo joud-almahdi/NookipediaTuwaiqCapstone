@@ -7,6 +7,8 @@ import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +17,8 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.fragment.findNavController
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.ActivityLoginactivityBinding
 import com.example.nookipedia.databinding.ActivityRegisteractivityBinding
@@ -23,9 +27,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
-class loginactivity : AppCompatActivity() {
-
+open class loginactivity : AppCompatActivity(),OnLocaleChangedListener {
+    private val localizationDelegate = LocalizationActivityDelegate(this)
     var Channelid:String="456"
     var notificationid:Int=1
 
@@ -33,6 +38,8 @@ class loginactivity : AppCompatActivity() {
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       localizationDelegate.addOnLocaleChangedListener(this)
+        localizationDelegate.onCreate()
         shared=getSharedPreferences("Auth",Context.MODE_PRIVATE)
         sharededitor=shared.edit()
         binding= ActivityLoginactivityBinding.inflate(layoutInflater)
@@ -42,6 +49,11 @@ class loginactivity : AppCompatActivity() {
             var intent=Intent(this,registeractivity::class.java)
             startActivity(intent)
         }
+
+
+
+
+
 
 
         binding.loginbutton.setOnClickListener {
@@ -74,9 +86,19 @@ class loginactivity : AppCompatActivity() {
 
         }
 
+    binding.arbuttoninlogin.setOnClickListener {
+
+            localizationDelegate.setLanguage(this,"ar")
 
     }
 
+        binding.enbuttonlinlogin.setOnClickListener {
+            localizationDelegate.setLanguage(this,"en_US")
+        }
+
+
+
+    }
 
 
 
@@ -117,6 +139,34 @@ class loginactivity : AppCompatActivity() {
 
 
 
+    public override fun onResume() {
+        super.onResume()
+        localizationDelegate.onResume(this)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
+    override fun getApplicationContext(): Context {
+        return localizationDelegate.getApplicationContext(super.getApplicationContext())
+    }
+
+    override fun getResources(): Resources {
+        return localizationDelegate.getResources(super.getResources())
+    }
+
+    fun setLanguage(language: String?) {
+        localizationDelegate.setLanguage(this, language!!)
+    }
+
+    fun setLanguage(locale: Locale?) {
+        localizationDelegate.setLanguage(this, locale!!)
+    }
+
+    val currentLanguage: Locale
+        get() = localizationDelegate.getLanguage(this)
 
 
 
@@ -124,10 +174,13 @@ class loginactivity : AppCompatActivity() {
 
 
 
+    override fun onAfterLocaleChanged() {
+        //
+    }
 
-
-
-
+    override fun onBeforeLocaleChanged() {
+        //
+    }
 
 
 }

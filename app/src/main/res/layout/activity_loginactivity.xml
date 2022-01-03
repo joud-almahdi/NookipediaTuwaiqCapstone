@@ -116,21 +116,49 @@
             android:hint="@string/password"
             android:inputType="textPassword" />
 
-        <ImageView
-            android:id="@+id/loginbutton"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:id="@+id/languageradioinlogin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="30dp"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/arbuttoninlogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/arabiclang" />
+
+            <RadioButton
+                android:id="@+id/enbuttonlinlogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/english" />
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/loginbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:foregroundGravity="center"
             android:src="@drawable/login" />
 
         <ImageView
             android:id="@+id/logintoregisterbutton"
-            android:layout_width="match_parent"
+            android:layout_width="142dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:foregroundGravity="center"
             android:src="@drawable/register" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

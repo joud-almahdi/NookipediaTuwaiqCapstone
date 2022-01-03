@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,15 +13,19 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.ActivityRegisteractivityBinding
 import com.example.nookipedia.unittesting.registerunittesting
 //import com.example.nookipedia.databinding.FragmentRegisterfragmentBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import java.util.*
 
 private lateinit var binding: ActivityRegisteractivityBinding
-class registeractivity : AppCompatActivity() {
+class registeractivity : AppCompatActivity(),OnLocaleChangedListener {
+    private val localizationDelegate = LocalizationActivityDelegate(this)
 
     var Channelid:String="456"
     var notificationid:Int=1
@@ -28,6 +33,8 @@ class registeractivity : AppCompatActivity() {
     private val validator=registerunittesting()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        localizationDelegate.addOnLocaleChangedListener(this)
+        localizationDelegate.onCreate()
         shared=getSharedPreferences("Auth", Context.MODE_PRIVATE)
         sharededitor=shared.edit()
         binding= ActivityRegisteractivityBinding.inflate(layoutInflater)
@@ -76,6 +83,16 @@ class registeractivity : AppCompatActivity() {
 
 
         }
+
+        binding.arbuttoninregister.setOnClickListener {
+
+            localizationDelegate.setLanguage(this,"ar")
+
+        }
+
+        binding.enbuttoninregister.setOnClickListener {
+            localizationDelegate.setLanguage(this,"en_US")
+        }
     }
 
 
@@ -115,8 +132,47 @@ class registeractivity : AppCompatActivity() {
     }
 
 
+    public override fun onResume() {
+        super.onResume()
+        localizationDelegate.onResume(this)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        applyOverrideConfiguration(localizationDelegate.updateConfigurationLocale(newBase))
+        super.attachBaseContext(newBase)
+    }
+
+    override fun getApplicationContext(): Context {
+        return localizationDelegate.getApplicationContext(super.getApplicationContext())
+    }
+
+    override fun getResources(): Resources {
+        return localizationDelegate.getResources(super.getResources())
+    }
+
+    fun setLanguage(language: String?) {
+        localizationDelegate.setLanguage(this, language!!)
+    }
+
+    fun setLanguage(locale: Locale?) {
+        localizationDelegate.setLanguage(this, locale!!)
+    }
+
+    val currentLanguage: Locale
+        get() = localizationDelegate.getLanguage(this)
 
 
+
+
+
+
+    override fun onAfterLocaleChanged() {
+        //
+    }
+
+    override fun onBeforeLocaleChanged() {
+        //
+    }
 
 
 }

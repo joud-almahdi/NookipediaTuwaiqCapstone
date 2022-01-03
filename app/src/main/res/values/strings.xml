@@ -21,4 +21,7 @@
     <string name="cjprice">CJ\'s Price</string>
     <string name="detail">Details</string>
     <string name="empty">Empty</string>
+    <string name="arabic" />
+    <string name="arabiclang">العربية</string>
+    <string name="english">English</string>
 </resources>

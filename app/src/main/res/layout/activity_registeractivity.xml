@@ -114,19 +114,45 @@
             android:hint="@string/password"
             android:inputType="textPassword" />
 
+        <RadioGroup
+            android:id="@+id/languageradioinregister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/arbuttoninregister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/arabiclang" />
+
+            <RadioButton
+                android:id="@+id/enbuttoninregister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/english" />
+        </RadioGroup>
+
         <ImageView
             android:id="@+id/registerbutton"
-            android:layout_width="match_parent"
+            android:layout_width="147dp"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:foregroundGravity="center"
             android:src="@drawable/register" />
 
         <ImageView
             android:id="@+id/registertologinbutton"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:foregroundGravity="center"
             android:src="@drawable/login" />
 
     </LinearLayout>

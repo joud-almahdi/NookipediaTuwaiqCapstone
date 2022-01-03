@@ -60,6 +60,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/useridinprofile" />
 
+    <RadioGroup
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/logoutbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/useremailinprofile">
+
+        <RadioButton
+            android:id="@+id/arradioinprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/arabiclang" />
+
+        <RadioButton
+            android:id="@+id/enradioinprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/animalcrossingfont"
+            android:text="@string/english" />
+    </RadioGroup>
+
     <ImageView
         android:id="@+id/userimageinprofile"
         android:layout_width="162dp"
@@ -73,4 +98,5 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0"
         tools:src="@drawable/insideprofileimage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
+import com.akexorcist.localizationactivity.core.OnLocaleChangedListener
 import com.example.nookipedia.R
 import com.example.nookipedia.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +24,7 @@ import com.google.firebase.ktx.Firebase
 class profile : Fragment() {
 
 private lateinit var binding:FragmentProfileBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +39,7 @@ private lateinit var binding:FragmentProfileBinding
     @SuppressLint("CommitPrefEdits")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val localizationDelegate = LocalizationActivityDelegate(requireActivity())
         shared=requireActivity().getSharedPreferences("Auth", Context.MODE_PRIVATE)
         sharededitor=shared.edit()
         binding.useridinprofile.text=auth.currentUser!!.uid
@@ -46,7 +50,19 @@ private lateinit var binding:FragmentProfileBinding
             startActivity(Intent(requireActivity(),loginactivity::class.java))
 
         }
+
+
+        binding.arradioinprofile.setOnClickListener {
+            localizationDelegate.setLanguage(requireActivity(),"ar")
+        }
+
+
+        binding.enradioinprofile.setOnClickListener {
+            localizationDelegate.setLanguage(requireActivity(),"en_US")
+        }
     }
+
+
 
 
 }
