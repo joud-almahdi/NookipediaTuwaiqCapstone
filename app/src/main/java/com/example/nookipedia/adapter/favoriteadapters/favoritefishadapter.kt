@@ -1,41 +1,41 @@
 package com.example.nookipedia.adapter.favoriteadaptersimport
 
- import android.annotation.SuppressLint
- import android.app.AlertDialog
- import android.content.Context
- import android.content.DialogInterface
- import android.text.InputType
- import android.util.Log
- import androidx.recyclerview.widget.RecyclerView
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
+import android.text.InputType
+import android.util.Log
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
- import android.widget.EditText
- import android.widget.ImageView
- import android.widget.TextView
- import android.widget.Toast
- import androidx.recyclerview.widget.AsyncListDiffer
- import androidx.recyclerview.widget.DiffUtil
- import com.example.nookipedia.R
- import com.example.nookipedia.data.favorites
- import com.example.nookipedia.json.fishjason.fishjsonItem
- import com.example.nookipedia.models.animalcrossingviewmodel
- import com.example.nookipedia.models.firebaseviewmodel
- import com.google.firebase.auth.ktx.auth
- import com.google.firebase.firestore.DocumentSnapshot
- import com.google.firebase.firestore.FirebaseFirestore
- import com.google.firebase.firestore.ktx.firestore
- import com.google.firebase.ktx.Firebase
- import com.squareup.picasso.Picasso
- import java.lang.IndexOutOfBoundsException
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
+import com.example.nookipedia.R
+import com.example.nookipedia.data.favorites
+import com.example.nookipedia.json.fishjason.fishjsonItem
+import com.example.nookipedia.models.animalcrossingviewmodel
+import com.example.nookipedia.models.firebaseviewmodel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
+import java.lang.IndexOutOfBoundsException
 
 class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
-    RecyclerView.Adapter<favoritefishadapter.favoritefishviewholder>() {
 
+    RecyclerView.Adapter<favoritefishadapter.favoritefishviewholder>() {
     val diffcallback= object: DiffUtil.ItemCallback<favorites>()
     {
         override fun areItemsTheSame(oldItem: favorites, newItem: favorites): Boolean {
-            return oldItem.favid==newItem.favid
+            return oldItem.crittername==newItem.crittername
         }
 
         override fun areContentsTheSame(oldItem: favorites, newItem: favorites): Boolean {
@@ -59,8 +59,8 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: favoritefishviewholder, position: Int) {
+        var newlist= mutableListOf<favorites>()
         val item = differ.currentList[position]
-
         holder.fishcrittername.text=item.crittername
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
         if(item.favnote!="")
@@ -73,16 +73,19 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         }
 
         holder.delete.setOnClickListener {
+            try {
+                fave.deletefave(item.favid!!)
+                newlist.addAll(differ.currentList)
+                newlist.removeAt(position)
+                submittedlist(newlist)
+            }
+            catch (e:IndexOutOfBoundsException)
+            {
+                Log.d("fastdelete","fastdelete")
+            }
 
 
 
-                        var newlist= mutableListOf<favorites>()
-
-                        newlist.addAll(differ.currentList)
-                        newlist.remove(item)
-                        differ.submitList(newlist)
-
-                        fave.deletefave(item.favid!!)
 
 
 
@@ -127,14 +130,14 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         val input = EditText(context)
         if (id != null) {
             db.collection("favorites").document(id).addSnapshotListener { value, error ->
-               if(value?.get("favnote")=="")
-               {
-                   input.setHint("Your note?")
-               }
+                if(value?.get("favnote")=="")
+                {
+                    input.setHint("Your note?")
+                }
                 else
-               {
-                   input.setText(value?.getString("favnote"),TextView.BufferType.EDITABLE)
-               }
+                {
+                    input.setText(value?.getString("favnote"),TextView.BufferType.EDITABLE)
+                }
 
             }
 
@@ -156,7 +159,7 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
             {
                 if (id != null) {
                     fave.updatefave(id,enterednote)
-                        submittedlist(differ.currentList)
+                    submittedlist(differ.currentList)
 
 
                 }
@@ -179,8 +182,6 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
 
 
-
-
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
@@ -194,6 +195,5 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         val fishcritterimage:ImageView=itemView.findViewById(R.id.imageinfavoritelayout)
         val delete:ImageView=itemView.findViewById(R.id.deleteinfavoritelayout)
         val note:TextView=itemView.findViewById(R.id.notestextviewinfavoritelayout)
-
     }
 }
