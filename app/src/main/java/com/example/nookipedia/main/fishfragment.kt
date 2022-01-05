@@ -6,34 +6,25 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import android.view.*
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.widget.AbsListView
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nookipedia.R
 import com.example.nookipedia.adapterimport.fishadapter
-import com.example.nookipedia.apis.animalcrossingapi
-import com.example.nookipedia.databinding.ActivityMainBinding
 import com.example.nookipedia.databinding.FragmentFishfragmentBinding
 import com.example.nookipedia.json.fishjason.fishjsonItem
 import com.example.nookipedia.models.addingspeciesviewmodel
 import com.example.nookipedia.models.animalcrossingviewmodel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 
 class fishfragment : Fragment() {
@@ -42,6 +33,7 @@ class fishfragment : Fragment() {
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var adapter:fishadapter
     lateinit var sharededitor: SharedPreferences.Editor
+    private lateinit var gridLayoutManager: GridLayoutManager
     var searchfish= mutableListOf<fishjsonItem>()
 
     @SuppressLint("CommitPrefEdits")
@@ -64,21 +56,23 @@ class fishfragment : Fragment() {
 
     }
 
-    
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.progressBar2.visibility=VISIBLE
          adapter=fishadapter(fishviewmodel,forfishdetail)
+        gridLayoutManager = GridLayoutManager(requireActivity(), 2)
+        binding.fishrecyclerview.layoutManager = gridLayoutManager
         binding.fishrecyclerview.adapter=adapter
         observe()
         fishviewmodel.getfish()
 
 
+
+
     }
-
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
@@ -148,9 +142,12 @@ class fishfragment : Fragment() {
 
     fun observe()
     {
+
         fishviewmodel.fishlivedata.observe(viewLifecycleOwner,{
+
             binding.fishrecyclerview.animate().alpha(0F)
-            adapter.submitfish(it)
+                adapter.submitfish(it)
+
             binding.progressBar2.visibility= INVISIBLE
             searchfish=it as MutableList<fishjsonItem>
             binding.fishrecyclerview.animate().alpha(1F)
@@ -168,6 +165,13 @@ class fishfragment : Fragment() {
         })
 
     }
+
+
+
+
+
+
+
 
 
 }

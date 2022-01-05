@@ -12,6 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+
+
 class animalcrossingviewmodel:ViewModel() {
     val apirepository:apirepository= com.example.nookipedia.repositories.apirepository.get()
     val fishlivedata=MutableLiveData <List<fishjsonItem>>()
@@ -48,8 +50,6 @@ class animalcrossingviewmodel:ViewModel() {
     }
 
     }
-
-
 
 
 

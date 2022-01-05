@@ -44,7 +44,7 @@ class favoritefragment : Fragment() {
     setHasOptionsMenu(true)
       binding=FragmentFavoritefragmentBinding.inflate(layoutInflater, container, false)
     adapter= favoritefishadapter(requireActivity(),favoriteviewmodel)
-    adapter.submittedlist(favefish)
+    //adapter.submittedlist(favefish)
     binding.favoriterecyclerview.adapter=adapter
     return binding.root
     }
@@ -52,8 +52,9 @@ class favoritefragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observer()
         favoriteviewmodel.getfave()
+        observer()
+
 
 
     }
@@ -144,28 +145,31 @@ class favoritefragment : Fragment() {
 
 
 
-
         fun observer()
         {
             favoriteviewmodel.favoritelivedata.observe(viewLifecycleOwner,{
 
+                it?.let {
+                    if(it.isEmpty())
+                    {
+                        binding.favoriterecyclerview.visibility=INVISIBLE
+                        binding.empty.visibility= VISIBLE
+                    }
+                    else
+                    {
 
-                if(it.isEmpty())
-                {
-                    binding.favoriterecyclerview.visibility=INVISIBLE
-                    binding.empty.visibility= VISIBLE
+                        binding.favoriterecyclerview.visibility= VISIBLE
+                        binding.empty.visibility= INVISIBLE
+                        binding.favoriterecyclerview.animate().alpha(0F)
+
+                        //  searchfave=it as MutableList<favorites>
+                        adapter.submittedlist(it)
+                        binding.favoriterecyclerview.animate().alpha(1F)
+
+                        favoriteviewmodel.favoritelivedata.postValue(null)
+                    }
                 }
-                else
-                {
 
-                    binding.favoriterecyclerview.visibility= VISIBLE
-                    binding.empty.visibility= INVISIBLE
-                    binding.favoriterecyclerview.animate().alpha(0F)
-                    adapter.submittedlist(it)
-                    searchfave=it as MutableList<favorites>
-                    binding.favoriterecyclerview.animate().alpha(1F)
-
-                }
 
 
             })

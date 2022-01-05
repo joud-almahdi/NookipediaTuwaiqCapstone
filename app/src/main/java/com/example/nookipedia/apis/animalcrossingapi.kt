@@ -7,11 +7,13 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface animalcrossingapi {
 
     @Headers("X-API-KEY: 91fd543a-28da-4b8d-af55-07a3d9fd6670")
     @GET("/nh/fish")
+
    suspend fun getfish(): Response<List<fishjsonItem>>
 
     @Headers("X-API-KEY: 91fd543a-28da-4b8d-af55-07a3d9fd6670")

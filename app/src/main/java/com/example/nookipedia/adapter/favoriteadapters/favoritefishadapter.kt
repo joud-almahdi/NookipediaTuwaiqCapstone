@@ -30,12 +30,12 @@ import android.view.ViewGroup
  import java.lang.IndexOutOfBoundsException
 
 class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
-
     RecyclerView.Adapter<favoritefishadapter.favoritefishviewholder>() {
+
     val diffcallback= object: DiffUtil.ItemCallback<favorites>()
     {
         override fun areItemsTheSame(oldItem: favorites, newItem: favorites): Boolean {
-            return oldItem.crittername==newItem.crittername
+            return oldItem.favid==newItem.favid
         }
 
         override fun areContentsTheSame(oldItem: favorites, newItem: favorites): Boolean {
@@ -59,8 +59,8 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: favoritefishviewholder, position: Int) {
-        var newlist= mutableListOf<favorites>()
         val item = differ.currentList[position]
+
         holder.fishcrittername.text=item.crittername
         Picasso.get().load(item.imageurl).into(holder.fishcritterimage)
         if(item.favnote!="")
@@ -73,19 +73,16 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         }
 
         holder.delete.setOnClickListener {
-                    try {
-                        fave.deletefave(item.favid!!)
+
+
+
+                        var newlist= mutableListOf<favorites>()
+
                         newlist.addAll(differ.currentList)
-                        newlist.removeAt(position)
-                        submittedlist(newlist)
-                    }
-                    catch (e:IndexOutOfBoundsException)
-                    {
-                        Log.d("fastdelete","fastdelete")
-                    }
+                        newlist.remove(item)
+                        differ.submitList(newlist)
 
-
-
+                        fave.deletefave(item.favid!!)
 
 
 
@@ -182,6 +179,8 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
 
 
+
+
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
@@ -195,5 +194,6 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
         val fishcritterimage:ImageView=itemView.findViewById(R.id.imageinfavoritelayout)
         val delete:ImageView=itemView.findViewById(R.id.deleteinfavoritelayout)
         val note:TextView=itemView.findViewById(R.id.notestextviewinfavoritelayout)
+
     }
 }

@@ -65,6 +65,8 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.akexorcist:localization:1.2.11'
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
+
 
 
 

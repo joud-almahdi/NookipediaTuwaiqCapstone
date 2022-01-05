@@ -22,7 +22,7 @@ class firebaseviewmodel:ViewModel() {
     var firebaseerrordata=MutableLiveData<String>()
     var livedatafortoasts=MutableLiveData<String>()
 
-
+    private  val TAG = "firebaseviewmodel"
 
 
 
@@ -31,20 +31,24 @@ class firebaseviewmodel:ViewModel() {
     {
         viewModelScope.launch(Dispatchers.IO) {
             try {
+                Log.d(TAG,"In try")
                 val response=firerepo.deletefave(id)
               response.addOnCompleteListener {
                   if(it.isSuccessful)
                   {
+                      Log.d(TAG,"In If")
                       livedatafortoasts.postValue("Deleted")
                   }
                   else
                   {
+                      Log.d(TAG,"In else")
                       firebaseerrordata.postValue(response.exception!!.message)
                   }
               }
             }
             catch (e:Exception)
             {
+                Log.d(TAG,"In catch")
                 firebaseerrordata.postValue(e.message)
 
             }

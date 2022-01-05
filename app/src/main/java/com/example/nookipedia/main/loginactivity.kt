@@ -33,7 +33,6 @@ open class loginactivity : AppCompatActivity(),OnLocaleChangedListener {
     private val localizationDelegate = LocalizationActivityDelegate(this)
     var Channelid:String="456"
     var notificationid:Int=1
-
     private lateinit var binding: ActivityLoginactivityBinding
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
