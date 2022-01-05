@@ -33,9 +33,7 @@ class fishfragment : Fragment() {
     private lateinit var binding: FragmentFishfragmentBinding
     private lateinit var adapter:fishadapter
     lateinit var sharededitor: SharedPreferences.Editor
-    private lateinit var gridLayoutManager: GridLayoutManager
     var searchfish= mutableListOf<fishjsonItem>()
-
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,8 +61,6 @@ class fishfragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.progressBar2.visibility=VISIBLE
          adapter=fishadapter(fishviewmodel,forfishdetail)
-        gridLayoutManager = GridLayoutManager(requireActivity(), 2)
-        binding.fishrecyclerview.layoutManager = gridLayoutManager
         binding.fishrecyclerview.adapter=adapter
         observe()
         fishviewmodel.getfish()

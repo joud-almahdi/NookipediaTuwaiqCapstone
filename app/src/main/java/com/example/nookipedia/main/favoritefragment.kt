@@ -1,15 +1,16 @@
 package com.example.nookipedia.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
 import android.view.View.*
-import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.nookipedia.R
 import com.example.nookipedia.adapter.favoriteadaptersimport.favoritefishadapter
 import com.example.nookipedia.data.favorites
@@ -32,11 +33,17 @@ class favoritefragment : Fragment() {
     private val favoriteviewmodel:firebaseviewmodel by activityViewModels()
     private var favefish=mutableListOf<favorites>()
     var searchfave= mutableListOf<favorites>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
     //https://www.youtube.com/watch?v=Ly0xwWlUpVM
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         binding=FragmentFavoritefragmentBinding.inflate(layoutInflater, container, false)
         adapter= favoritefishadapter(requireActivity(),favoriteviewmodel)
@@ -55,6 +62,89 @@ class favoritefragment : Fragment() {
 
 
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        requireActivity().menuInflater.inflate(R.menu.uppermenuforfave,menu)
+
+        val searchitem=menu.findItem(R.id.app_bar_search)
+
+
+        val searchView=searchitem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.submittedlist(
+
+                    searchfave.filter { it.crittername!!.lowercase().contains(query!!.lowercase()) }
+                )
+
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                adapter.submittedlist(
+
+                    searchfave.filter { it.crittername!!.lowercase().contains(newText!!.lowercase()) }
+                )
+                return true
+            }
+
+
+        })
+
+        searchitem.setOnActionExpandListener(object: MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+
+                adapter.submittedlist(searchfave)
+                return true
+
+            }
+
+        })
+
+
+
+
+
+
+
+
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId)
+        {
+            R.id.logout->{ sharededitor.putBoolean("status",false)
+                sharededitor.commit()
+                startActivity(Intent(requireActivity(),loginactivity::class.java))
+                requireActivity().finish()
+            }
+            R.id.profile->findNavController().navigate(R.id.action_favoritefragment_to_profile)
+
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,20 +152,33 @@ class favoritefragment : Fragment() {
     {
         favoriteviewmodel.favoritelivedata.observe(viewLifecycleOwner,{
 
+            favoriteviewmodel.favoritelivedata.observe(viewLifecycleOwner,{
 
-            if(it.isEmpty())
-            {
-                binding.favoriterecyclerview.visibility=INVISIBLE
-                binding.empty.visibility= VISIBLE
-            }
-            else
-            {
-                binding.favoriterecyclerview.visibility= VISIBLE
-                binding.empty.visibility= INVISIBLE
-                favoriteviewmodel.getfave()
-                adapter.submittedlist(it)
-            }
 
+                if(it.isEmpty())
+                {
+                    binding.favoriterecyclerview.visibility=INVISIBLE
+                    binding.empty.visibility= VISIBLE
+                }
+                else
+                {
+
+                    binding.favoriterecyclerview.visibility= VISIBLE
+                    binding.empty.visibility= INVISIBLE
+                    binding.favoriterecyclerview.animate().alpha(0F)
+                    adapter.submittedlist(it)
+                    searchfave=it as MutableList<favorites>
+                    binding.favoriterecyclerview.animate().alpha(1F)
+
+                }
+
+
+            })
+//                favoriteviewmodel.getfave()
+//                adapter.submittedlist(it)
+//                searchfave=it as MutableList<favorites>
+//
+//                binding.favoriterecyclerview.visibility= VISIBLE
 
         })
 
@@ -89,8 +192,10 @@ class favoritefragment : Fragment() {
 
         favoriteviewmodel.livedatafortoasts.observe(viewLifecycleOwner,{
             it?.let {
+                favoriteviewmodel.getfave()
                 Toast.makeText(requireActivity(), it, Toast.LENGTH_SHORT).show()
                 favoriteviewmodel.livedatafortoasts.postValue(null)
+                adapter.submittedlist(favefish)
             }
 
         })
