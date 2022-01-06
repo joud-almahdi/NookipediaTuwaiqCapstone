@@ -83,13 +83,6 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
             {
                 Log.d("fastdelete","fastdelete")
             }
-
-
-
-
-
-
-
         }
 
 
@@ -175,10 +168,6 @@ class favoritefishadapter(val context: Context,val fave:firebaseviewmodel) :
 
         builder.show()
     }
-
-
-
-
 
 
 

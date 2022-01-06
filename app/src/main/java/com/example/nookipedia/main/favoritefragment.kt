@@ -34,10 +34,6 @@ class favoritefragment : Fragment() {
     private var favefish=mutableListOf<favorites>()
     var searchfave= mutableListOf<favorites>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     //https://www.youtube.com/watch?v=Ly0xwWlUpVM
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -159,6 +155,7 @@ class favoritefragment : Fragment() {
                 {
                     binding.favoriterecyclerview.visibility=INVISIBLE
                     binding.empty.visibility= VISIBLE
+                    binding.favoriterecyclerview.scrollState
                 }
                 else
                 {
