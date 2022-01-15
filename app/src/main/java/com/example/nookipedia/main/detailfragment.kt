@@ -94,6 +94,7 @@ class detailfragment : Fragment() {
 
 
 
+
         binding.favoriteindetailview.setOnClickListener { click->
 
             val id=thefaves.number.toString()
