@@ -76,6 +76,15 @@ Additionally, the app contains Arabic Language Support for the app's UI elements
 
 # List of Technologies
 
+This app was created using the Kotlin Programming language. It utilizes a RESTfull API to display information about the game, Firebase for authentication and for storing user related data, Picasso for showing images, and a localization library for translating UI elements
+
+[Localization Library](https://github.com/akexorcist/Localization)
+
+[Picasso](https://github.com/square/picasso)
+
+[Animal Crossing API](https://api.nookipedia.com/)
+
+[Firebase](https://firebase.google.com/)
 
 
 
