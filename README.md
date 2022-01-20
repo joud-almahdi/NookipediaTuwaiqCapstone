@@ -251,6 +251,9 @@ There are two types of notifications in this app: In-app notifications which are
 Due to the nature of MVVM, notes get updated immediately after being changed.However, this sometimes causes the app to lag a bit,occasionally showing a previous version of the list before reverting back to the new,correct list .This could be the result of phone space,but I nevertheless would like to improve upon this
 
 
+The image in the profile view is static and cannot be changed,I would like to be able to store images in firebase to allow for changing it
+
+
 
 
 
