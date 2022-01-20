@@ -30,6 +30,24 @@ The player is free to do whatever the want with what they caught, which will be 
 <p>&nbsp;</p>
 
 
+![fishshadow](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/40cd99c3679cae2fad4751455b92e80008651f90/images/fishshadow.jpg)
+
+
+Fish can either be found in rivers or by the sea. The player needs to throw their fishing rod at the shadow that can be seen, which indicates the existance of a fish. The bigger the shadow the bigger the fish.
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+![bugcatching](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/40cd99c3679cae2fad4751455b92e80008651f90/images/bugcatch.jpg)
+
+Bugs can be caught with a net, and can be seen either flying, hiding in trees, or hanging on palm trees
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+![seashadow](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/b256589fa93b9ac18d2f3370b0f67a4d26107831/images/seashadow.jpg)
+
+Similar to fish, the existance of sea creatures is indicated by their shadows. In this case, they can be found on the sea floor and the player must dive to catch them. Sea creatures can also run away from the player, the speed of which varies from a creature to another
+
 The player can also either donate these critters to their island museum, or sell them to their island shop "Nook's Cranny" to earn bells, which is the in-game currency used on their island
 
 
@@ -120,10 +138,17 @@ If the user hasn't already logged in beforehand, they will be taken to the login
 
 Fish       | Fish details
 :-------------------------:|:-------------------------:
-![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)|![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish%20details.png)
+![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)|![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Fish%20details.png)
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 The first list of critters the user can browse through after a successful login is the fish list. They can view every fish in the game. If they wish to view a certain fish's details, they will need to click on the desired fish
+
+
+The user can learn about where they can find a pirticular fish, its shadow sizes, its price at Nook's Cranny, and CJ's price
+
+The star icon is what enables the user to add a critter to their favorite list, and the present icon lets them share the critter's entry on [Nookipedia.com](https://nookipedia.com/wiki/Main_Page) to others
+
+
 
 
 <p>&nbsp;</p>
@@ -131,13 +156,18 @@ The first list of critters the user can browse through after a successful login 
 
 Bugs       | Bug details
 :-------------------------:|:-------------------------:
-![bugs](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug.png)|![bugdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug%20Details.png)
+![bugs](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug.png)|![bugdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Bug%20Details.png)
+
+The user can navigate to the bugs and sea creatures list with the navigation items at the bottom of their screen. The bug details view shows where they can find a bug, as well as its prices when sold to Nook's Cranny or Flick.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
 Sea       | Sea details
 :-------------------------:|:-------------------------:
-![sea](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea.png)|![seadetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea%20Details.png)
+![sea](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea.png)|![seadetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Sea%20Details.png)
+
+
+Similarly, the sea creatures list can be reached  with the navigation items, the details view shows a creature's shadow size, movement speed, and its price at Nook's Cranny.
 
 
 
@@ -146,7 +176,7 @@ Sea       | Sea details
 
 
 
-![favorite](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/a99e2d0ce6d5d16b1af5a3b01206d695ac79f369/favorites.png)
+![favorite](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/favorites.png)
 
 If the user added a critter to their favorite list, this is where they will find them. From here they can add notes to their entries, or delete them from their list
 
@@ -154,6 +184,8 @@ If the user added a critter to their favorite list, this is where they will find
 <p>&nbsp;</p>
 
 ![profile](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/a99e2d0ce6d5d16b1af5a3b01206d695ac79f369/Profile.png)
+
+This is the Profile view, which lets the user view their personal user ID, and their Email Address
 
 
 
