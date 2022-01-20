@@ -92,24 +92,67 @@ This app was created using the Kotlin Programming language. It utilizes a RESTfu
 
 # Wireframes 
 
-The wireframes for this app were created using Figma: https://www.figma.com/proto/ndA3uLv49eJ1u3tOcoqU8i/Untitled?page-id=0%3A1&node-id=2%3A2&viewport=241%2C48%2C0.57&scaling=scale-down&starting-point-node-id=2%3A2
+The wireframes for this app were created using Figma: [Link](https://www.figma.com/file/ndA3uLv49eJ1u3tOcoqU8i/Untitled?node-id=0%3A1)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ![splash](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Splash.png)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+This is the splash Screen, the first screen of the app
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+Login         | Register
+:-------------------------:|:-------------------------:
+![login](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Login.png) | ![register](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Register.png)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+If the user hasn't already logged in beforehand, they will be taken to the login screen after the splash screen.Where they can either login, or create a new account
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+Fish       | Fish details
+:-------------------------:|:-------------------------:
+![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)|![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish%20details.png)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+The first list of critters the user can browse through after a successful login is the fish list. They can view every fish in the game. If they wish to view a certain fish's details, they will need to click on the desired fish
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+Bugs       | Bug details
+:-------------------------:|:-------------------------:
+![bugs](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug.png)|![bugdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug%20Details.png)
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+Sea       | Sea details
+:-------------------------:|:-------------------------:
+![sea](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea.png)|![seadetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea%20Details.png)
 
 
 
 
-![login](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Login.png)
 
-![register](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Register.png)
 
-![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)
-![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish%20details.png)
-![bugs](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug.png)
-![bugdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug%20Details.png)
-![sea](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea.png)
-![seadetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea%20Details.png)
+
+
 ![favorite](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/a99e2d0ce6d5d16b1af5a3b01206d695ac79f369/favorites.png)
+
+If the user added a critter to their favorite list, this is where they will find them. From here they can add notes to their entries, or delete them from their list
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 ![profile](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/a99e2d0ce6d5d16b1af5a3b01206d695ac79f369/Profile.png)
 
 
