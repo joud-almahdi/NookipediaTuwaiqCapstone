@@ -30,6 +30,24 @@ The player is free to do whatever the want with what they caught, which will be 
 <p>&nbsp;</p>
 
 
+![fishshadow](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/40cd99c3679cae2fad4751455b92e80008651f90/images/fishshadow.jpg)
+
+
+Fish can either be found in rivers or by the sea. The player needs to throw their fishing rod at the shadow that can be seen, which indicates the existance of a fish. The bigger the shadow the bigger the fish.
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+![bugcatching](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/40cd99c3679cae2fad4751455b92e80008651f90/images/bugcatch.jpg)
+
+Bugs can be caught with a net, and can be seen either flying, hiding in trees, or hanging on palm trees
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+![seashadow](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/b256589fa93b9ac18d2f3370b0f67a4d26107831/images/seashadow.jpg)
+
+Similar to fish, the existance of sea creatures is indicated by their shadows. In this case, they can be found on the sea floor and the player must dive to catch them. Sea creatures can also run away from the player, the speed of which varies from a creature to another
+
 The player can also either donate these critters to their island museum, or sell them to their island shop "Nook's Cranny" to earn bells, which is the in-game currency used on their island
 
 
@@ -120,10 +138,17 @@ If the user hasn't already logged in beforehand, they will be taken to the login
 
 Fish       | Fish details
 :-------------------------:|:-------------------------:
-![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)|![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish%20details.png)
+![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)|![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Fish%20details.png)
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 The first list of critters the user can browse through after a successful login is the fish list. They can view every fish in the game. If they wish to view a certain fish's details, they will need to click on the desired fish
+
+
+The user can learn about where they can find a pirticular fish, its shadow sizes, its price at Nook's Cranny, and CJ's price
+
+The star icon is what enables the user to add a critter to their favorite list, and the present icon lets them share the critter's entry on [Nookipedia.com](https://nookipedia.com/wiki/Main_Page) to others
+
+
 
 
 <p>&nbsp;</p>
@@ -131,13 +156,18 @@ The first list of critters the user can browse through after a successful login 
 
 Bugs       | Bug details
 :-------------------------:|:-------------------------:
-![bugs](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug.png)|![bugdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug%20Details.png)
+![bugs](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Bug.png)|![bugdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Bug%20Details.png)
+
+The user can navigate to the bugs and sea creatures list with the navigation items at the bottom of their screen. The bug details view shows where they can find a bug, as well as its prices when sold to Nook's Cranny or Flick.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
 Sea       | Sea details
 :-------------------------:|:-------------------------:
-![sea](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea.png)|![seadetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea%20Details.png)
+![sea](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Sea.png)|![seadetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Sea%20Details.png)
+
+
+Similarly, the sea creatures list can be reached  with the navigation items, the details view shows a creature's shadow size, movement speed, and its price at Nook's Cranny.
 
 
 
@@ -146,7 +176,7 @@ Sea       | Sea details
 
 
 
-![favorite](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/a99e2d0ce6d5d16b1af5a3b01206d695ac79f369/favorites.png)
+![favorite](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/favorites.png)
 
 If the user added a critter to their favorite list, this is where they will find them. From here they can add notes to their entries, or delete them from their list
 
@@ -155,6 +185,8 @@ If the user added a critter to their favorite list, this is where they will find
 
 ![profile](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/a99e2d0ce6d5d16b1af5a3b01206d695ac79f369/Profile.png)
 
+This is the Profile view, which lets the user view their personal user ID, and their Email Address
+
 
 
 
@@ -162,13 +194,45 @@ If the user added a critter to their favorite list, this is where they will find
 
 # User Story
 
+*As a completionist, I want to know how and where to find any critter in the game so that I can complete my critterpedia
 
+*As someone who likes to keep notes, I want to have notes about any critter I want so that I can view them later for reference
+
+*As someone who is forgetful and wants to sell their turnips, I want to be reminded whenever their prices changes to that I can check them immediately
+
+*As someone with their own prefrences, I want to be able to create an account so that I can log in to it and keep my preferences saved in that account
+
+*As someone who has trouble understanding English, I want to be able to change the app's language to Arabic so that I can navigate through it more easily
 
 
 
 
 # Planning and Development Process
 
+The outline for my development plan was similar to this:
+
+
+1-Design wireframe
+
+
+2-Design XML
+
+
+3-Code requirements
+
+
+4-Code Any possible Extras
+
+
+5-Cleanup and testing
+
+
+And starting with step 2, everything related to this app had been backed up here on this Github repository. Per the requirements from Tuwaiq, this project was built using the MVVM architecture.However, the code was initially written in the fragments as is to make sure it worked first, and then was transferred to a repository and a viewmodel later.
+
+The API used required a key, which is obtained by sending a request form to the API's creators,who then would send the key to the email address enterd in the form. The API only contained GET requests while one requirement was to include full CRUD support.This is how the idea of allowing the user to favorite critters and add notes came to be.Using Firestore, databases can be created in the form of collection, and every record is a document inside the collection.When the user adds a critter to the favorites list, this critter will be added to the favorites collection alongside their userid, with the notes field being empty by default. Storing the userid is what allows the app to only show critters added by the currently logged in user. When the user wishes to add a note, they are simply editing the notes field, which originally is just an empty string, though they can of course edit their notes as many times as they want.
+
+
+One extra that was implemented was a second lanuage support. Initally, the app would only change the language to Arabic if it was the phone's chosen language,doing which required no coding and only a translation file was can be easily created with Android Studio. However, with the use of an external library, not only can the language now be changed manually depending on the user's preference, but it is also saved in the phone's memory, meaning that there was no need to use shared preferences 
 
 
 
@@ -178,6 +242,17 @@ If the user added a critter to their favorite list, this is where they will find
 
 # Unsolved Problems
 
+One plan was to include notifications for in-game events, such as Halloween in October and Toy Day in December.However, Firebase only allows for 10 notifications to be active at a time,which was not enough, so the idea was scrapped and was replaced with turnip price notifications.
+
+
+There are two types of notifications in this app: In-app notifications which are launched with every successful login and/or signup, and firebase notifications which are launched at a set time when turnip prices change. Firebase notifcations launch inconsistently, meaning that they are not sent everyday that they are meant to. This only seems to happen when the time is set to match the the recipient's timezone
+
+
+Due to the nature of MVVM, notes get updated immediately after being changed.However, this sometimes causes the app to lag a bit,occasionally showing a previous version of the list before reverting back to the new,correct list .This could be the result of phone space,but I nevertheless would like to improve upon this
+
+
+The image in the profile view is static and cannot be changed,I would like to be able to store images in firebase to allow for changing it
+
 
 
 
@@ -186,7 +261,10 @@ If the user added a critter to their favorite list, this is where they will find
 # Favorite Functioanlity
 
 
+Providing multiple language support was something that I knew existed before this project, but I was not aware of how easy it was to implement. All it needed was an extra Strings file and required next to no coding.
 
+
+When the user wishes to add a note, they will be promted to enter said note in a dialog box.If a note already exists that is not the default empty one, the note will show up as an edited text instead of the the generic hint. After they are done writing, the note will automatically show up in their list thanks to MVVM and the usage of live data
 
 
 
