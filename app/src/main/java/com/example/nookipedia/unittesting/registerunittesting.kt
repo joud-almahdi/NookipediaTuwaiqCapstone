@@ -21,10 +21,10 @@ class registerunittesting {
         return matcher.matches()
     }
 
-    fun passwordisvalid(password:String):Boolean
-    {
-        val pattern= Pattern.compile(REGEX_PASSWORD)
-        val matcher=pattern.matcher(password)
-        return matcher.matches()
-    }
+//    fun passwordisvalid(password:String):Boolean
+//    {
+//        val pattern= Pattern.compile(REGEX_PASSWORD)
+//        val matcher=pattern.matcher(password)
+//        return matcher.matches()
+//    }
 }
