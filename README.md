@@ -48,7 +48,17 @@ Bugs can be caught with a net, and can be seen either flying, hiding in trees, o
 
 Similar to fish, the existance of sea creatures is indicated by their shadows. In this case, they can be found on the sea floor and the player must dive to catch them. Sea creatures can also run away from the player, the speed of which varies from a creature to another
 
-The player can also either donate these critters to their island museum, or sell them to their island shop "Nook's Cranny" to earn bells, which is the in-game currency used on their island
+
+
+After every successful catch, the player gets to read a quote unique to what critter they caught
+
+
+
+![critterquote](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/bbf033b5a66374c62581d9214fd0777949ce9480/images/caughtathing.jpg)
+
+
+
+The player can also either donate their caught critters to their island museum, or sell them to their island shop "Nook's Cranny" to earn bells, which is the in-game currency used on their island
 
 
 
