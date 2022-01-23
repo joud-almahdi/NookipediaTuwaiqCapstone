@@ -244,6 +244,16 @@ The API used required a key, which is obtained by sending a request form to the 
 
 One extra that was implemented was a second lanuage support. Initally, the app would only change the language to Arabic if it was the phone's chosen language,doing which required no coding and only a translation file was can be easily created with Android Studio. However, with the use of an external library, not only can the language now be changed manually depending on the user's preference, but it is also saved in the phone's memory, meaning that there was no need to use shared preferences 
 
+One problem that was encountered  was that the hint text would not change its alignment when changing the language to Arabic. This is supposedly due to a bug in Android Studio.
+
+This was fixed by including this in the XML CODE
+
+
+```
+ android:textAlignment="viewStart"
+```
+
+
 
 
 
