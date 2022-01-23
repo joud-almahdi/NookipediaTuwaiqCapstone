@@ -108,15 +108,32 @@ This app was created using the Kotlin Programming language. It utilizes a RESTfu
 
 [Localization Library](https://github.com/akexorcist/Localization)
 
+
 [Picasso](https://github.com/square/picasso)
 
+
 [Animal Crossing API](https://api.nookipedia.com/)
+
+
 
 [Firebase](https://firebase.google.com/)
 
 
+[Retrofit](https://github.com/square/retrofit)
 
+```
+dependencies {
+ implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+ implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
+ implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
+ implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+ implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+ implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+ implementation 'com.akexorcist:localization:1.2.11'
+ implementation 'com.squareup.picasso:picasso:2.71828'
 
+}
+```
 
 # Wireframes 
 
@@ -246,7 +263,7 @@ One extra that was implemented was a second lanuage support. Initally, the app w
 
 One problem that was encountered  was that the hint text would not change its alignment when changing the language to Arabic. This is supposedly due to a bug in Android Studio.
 
-This was fixed by including this in the XML CODE
+This was fixed by including the following in the XML code
 
 
 ```
