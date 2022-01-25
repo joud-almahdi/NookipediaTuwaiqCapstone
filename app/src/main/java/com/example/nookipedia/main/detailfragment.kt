@@ -65,6 +65,10 @@ class detailfragment : Fragment() {
             binding.nookpriceindetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
             binding.shadowsizeindetailview.text="Shadow Size:........${fish.shadowSize}"
             binding.cjprice.text="CJ's price:........${fish.sellCj}  Bells"
+            binding.northavailabilityinfish.text="Found on northern hemisphere:........${fish.north.months}"
+            binding.northtimeinfish.text=" Times for northern hemisphere :........${fish.north.availabilityArray[0].time}"
+            binding.southavailabilityinfish.text="Found on southern hemisphere:........${fish.south.months}"
+            binding.southtimeinfish.text=" Times for southern hemisphere :........${fish.south.availabilityArray[0].time}"
             Picasso.get().load(fish.renderUrl).into(binding.itemimageindetailview)
                 thefaves=fish
 

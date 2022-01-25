@@ -83,7 +83,12 @@
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/giftbox" />
         </LinearLayout>
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -119,9 +124,49 @@
                 android:text="@string/priceatnook"
                 android:textAlignment="center" />
 
+            <TextView
+                android:id="@+id/northavailabilityinsea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/availabilitynorth"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/northtimeinsea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/timenorth"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/southavailabilityinsea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/availabilitysouth"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/southtimeinsea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/profiledatashow"
+                android:fontFamily="@font/animalcrossingfont"
+                android:text="@string/timesouth"
+                android:textAlignment="center" />
+
 
         </LinearLayout>
-
+        </ScrollView>
     </LinearLayout>
 
 

@@ -61,6 +61,10 @@ class seadetailFragment : Fragment() {
             binding.movementspeedinseadetail.text="Movement Speed:........${fish.shadowMovement}"
             binding.shadowsizeinseadetailview.text="Shadow Size:........${fish.shadowSize}"
             binding.nookpriceinseadetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
+            binding.northavailabilityinsea.text="Found on northern hemisphere:........${fish.north.months}"
+            binding.northtimeinsea.text=" Times for northern hemisphere :........${fish.north.availabilityArray[0].time}"
+            binding.southavailabilityinsea.text="Found on southern hemisphere:........${fish.south.months}"
+            binding.southtimeinsea.text=" Times for southern hemisphere :........${fish.south.availabilityArray[0].time}"
 
 
            thefaves=fish

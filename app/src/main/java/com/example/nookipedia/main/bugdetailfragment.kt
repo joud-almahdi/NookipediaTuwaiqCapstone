@@ -61,6 +61,10 @@ private val bugviewmodel:animalcrossingviewmodel by activityViewModels()
             binding.locationinbugdetailview.text="Location:........${fish.location}"
             binding.nookpriceinbugdetailview.text="Price at Nook's cranny:........${fish.sellNook} Bells"
             binding.flickprice.text="Flick's price:........${fish.sellFlick}  Bells"
+            binding.northavailabilityinbug.text="Found on northern hemisphere:........${fish.north.months}"
+            binding.northtimeinbug.text=" Times for northern hemisphere :........${fish.north.availabilityArray[0].time}"
+            binding.southavailabilityinbug.text="Found on southern hemisphere:........${fish.south.months}"
+            binding.southtimeinbug.text=" Times for southern hemisphere :........${fish.south.availabilityArray[0].time}"
 
             thefaves=fish
 

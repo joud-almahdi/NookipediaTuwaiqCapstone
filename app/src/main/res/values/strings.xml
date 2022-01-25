@@ -24,4 +24,8 @@
     <string name="arabic" />
     <string name="arabiclang">العربية</string>
     <string name="english">English</string>
+    <string name="availabilitynorth">Availability (North)</string>
+    <string name="timenorth">Time(North)</string>
+    <string name="availabilitysouth">Availability (South)</string>
+    <string name="timesouth">Time (south)</string>
 </resources>
