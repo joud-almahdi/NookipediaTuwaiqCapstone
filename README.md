@@ -19,7 +19,7 @@ It is a life-simulation game where the player moves to a deserted island. From t
 ![phone](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/4c34403378fa3f81c7700448589cda2b871cdc05/images/phone.jpg)
 
 
-In addition to that, the player can also engage in other activities. One of them is catching critters found on the island. These include fish, bug , and sea life. These critters appear at specific times of the year and at specific hours of the day, meaning that the player must look out of critter spawn time if they wish to catch a certain type.
+In addition to that, the player can also engage in other activities. One of them is catching critters found on the island. These include fish, bug , and sea life. These critters appear at specific times of the year and at specific hours of the day depending on which hemisphere the player's island is on, meaning that they must look out of critter spawn times if they wish to catch a certain type.
 The player is free to do whatever they want with what they caught, which will be automatically registerd to their in-game encyclopdeia called Critterpedia.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -198,6 +198,8 @@ Similarly, the sea creatures list can be reached  with the navigation items, the
 
 
 
+
+for every detail view, the user can scroll to find spawn times for both northen and southern hemisphere.
 
 
 
