@@ -20,7 +20,7 @@ It is a life-simulation game where the player moves to a deserted island. From t
 
 
 In addition to that, the player can also engage in other activities. One of them is catching critters found on the island. These include fish, bug , and sea life. These critters appear at specific times of the year and at specific hours of the day, meaning that the player must look out of critter spawn time if they wish to catch a certain type.
-The player is free to do whatever the want with what they caught, which will be automatically registerd to their in-game encyclopdeia called Critterpedia.
+The player is free to do whatever they want with what they caught, which will be automatically registerd to their in-game encyclopdeia called Critterpedia.
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
