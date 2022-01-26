@@ -168,7 +168,7 @@ Fish       | Fish details
 ![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/3a12e910650a7293f4afbb6cf1ad400d13898034/Fish.png)|![fishdetails](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/39a67cd1a01295e7b112550e1c00c3fec6743974/images/Fish%20details.png)
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-The first list of critters the user can browse through after a successful login is the fish list. They can view every fish in the game. If they wish to view a certain fish's details, they will need to click on the desired fish
+The first list of critters the user can browse through after a successful login is the fish list. They can view every fish in the game. If they wish to view a certain fish's details, they will need to click on the desired fish, or search for it with the search bar
 
 
 The user can learn about where they can find a pirticular fish, its shadow sizes, its price at Nook's Cranny, and CJ's price
