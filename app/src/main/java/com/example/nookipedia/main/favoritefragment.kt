@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.View.*
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
