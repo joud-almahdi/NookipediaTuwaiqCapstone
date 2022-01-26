@@ -137,7 +137,7 @@ dependencies {
 
 # Wireframes 
 
-The wireframes for this app were created using Figma: [Link](https://www.figma.com/file/ndA3uLv49eJ1u3tOcoqU8i/Untitled?node-id=0%3A1)
+The wireframes for this app were created using Figma: [Link](https://www.figma.com/file/ndA3uLv49eJ1u3tOcoqU8i/Untitled)
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
@@ -200,6 +200,18 @@ Similarly, the sea creatures list can be reached  with the navigation items, the
 
 
 for every detail view, the user can scroll to find spawn times for both northen and southern hemisphere.
+
+
+
+
+
+
+| Fish Availability       | Bug availability         | Sea availability|
+| ------------- |:-------------:| -----:|
+| ![fish](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/6d8de4f8204911942bbbe514ab42dfb956f5bd00/images/scrollfish.png)     | ![bugscroll](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/6d8de4f8204911942bbbe514ab42dfb956f5bd00/images/bugscroll.png) | ![seascroll](https://github.com/joud-almahdi/NookipediaTuwaiqCapstone/blob/6d8de4f8204911942bbbe514ab42dfb956f5bd00/images/seascroll.png) |
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
 
 
 
