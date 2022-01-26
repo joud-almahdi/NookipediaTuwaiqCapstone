@@ -296,7 +296,7 @@ This was fixed by including the following in the XML code
 One plan was to include notifications for in-game events, such as Halloween in October and Toy Day in December.However, Firebase only allows for 10 notifications to be active at a time,which was not enough, so the idea was scrapped and was replaced with turnip price notifications.
 
 
-There are two types of notifications in this app: In-app notifications which are launched with every successful login and/or signup, and firebase notifications which are launched at a set time when turnip prices change. Firebase notifcations launch inconsistently, meaning that they are not sent everyday that they are meant to. This only seems to happen when the time is set to match the the recipient's timezone
+There are two types of notifications in this app: In-app notifications which are launched with every successful login and/or signup, and firebase notifications which are launched at a set time when turnip prices change. Firebase notifcations launch inconsistently, meaning that they are not sent everyday that they are meant to. 
 
 
 Due to the nature of MVVM, notes get updated immediately after being changed.However, this sometimes causes the app to lag a bit,occasionally showing a previous version of the list before reverting back to the new,correct list .This could be the result of phone space,but I nevertheless would like to improve upon this
